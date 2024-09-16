@@ -1,0 +1,6 @@
+@CargoCotainerShipping_HostAddress = http://localhost:5145
+
+GET {{CargoCotainerShipping_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
