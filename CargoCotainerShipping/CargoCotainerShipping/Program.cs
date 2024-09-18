@@ -24,6 +24,10 @@ builder.Services.AddScoped<ContainerService>();
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<BookingService>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserService>();
+
 builder.Services.AddControllers();
 
 
