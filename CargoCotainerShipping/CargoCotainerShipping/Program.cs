@@ -3,6 +3,7 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Core.Interfaces;
 using Application.Services;
+using Application.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,11 +25,24 @@ builder.Services.AddScoped<ContainerService>();
 
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<BookingService>();
+
 builder.Services.AddControllers();
+builder.Services.AddTransient<IEmailNotification, EmailNotification>();
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000") // Replace with your frontend's URL
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 var app = builder.Build();
 
+app.UseCors("AllowReactApp");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

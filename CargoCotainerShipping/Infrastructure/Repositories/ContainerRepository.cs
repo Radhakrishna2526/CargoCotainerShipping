@@ -27,7 +27,7 @@ namespace Infrastructure.Repositories
         }
         public async Task<Container> GetByIdAsync(int id)
         {
-            return await _context.Containers.FindAsync(id);
+            return await _context.Containers.FirstOrDefaultAsync(x=>x.Id==id);
         }
 
         public async Task UpdateAsync(Container container)

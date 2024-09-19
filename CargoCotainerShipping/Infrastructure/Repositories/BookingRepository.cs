@@ -1,6 +1,8 @@
-﻿using Core.Entities;
+﻿using Application.DTOs;
+using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,27 @@ namespace Infrastructure.Repositories
         {
             _dbContext.Bookings.Add(booking);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public  Task<List<Booking>> GetBookingDetailAsync(int userId)
+        {
+
+            return  _dbContext.Bookings.Where(x => x.UserId == userId)
+                .Include(x=>x.User)
+                .Include(x=>x.Container)
+                .Include(x=>x.SourcePort)
+                .Include(x=>x.DestinationPort)
+                .ToListAsync();
+                   
+
+
+        }
+
+        public User GetUserDetails(int userID)
+        {
+            var result=_dbContext.Users.FirstOrDefault(x=>x.Id == userID);
+          
+            return result;
         }
     }
 }

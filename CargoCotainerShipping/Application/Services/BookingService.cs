@@ -1,4 +1,6 @@
-﻿using Core.Entities;
+﻿using Application.DTOs;
+using AutoMapper;
+using Core.Entities;
 using Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace Application.Services
         public int ContainerId { get; set; }
         public int SourcePortId { get; set; }
         public int DestinationPortId { get; set; }
+        public DateOnly StartingDate { get; set; }
     }
 
     public class BookingResponse
@@ -27,7 +30,8 @@ namespace Application.Services
     {
         private readonly IBookingRepository _bookingRepository;
         private readonly IContainerRepository _containerRepository;
-
+        private readonly IMapper _mapper;
+        private IEmailNotification _emailNotification;
         public List<List<int>> DISTANCE_GRAPH = new List<List<int>>
         {
             new List<int>() { 0 , 1 , 5 , 5 , 7 , 7 , 3 , 2 , 3 , 6 },
@@ -44,13 +48,15 @@ namespace Application.Services
 
         public BookingService(
             IBookingRepository bookingRepository,
-            IContainerRepository containerRepository)
+            IContainerRepository containerRepository,IMapper mapper, IEmailNotification emailNotification)
         {
             _bookingRepository = bookingRepository;
             _containerRepository = containerRepository;
+            _mapper = mapper;
+            _emailNotification = emailNotification;
         }
 
-        public async Task<BookingResponse> BookContainerAsync(int userId, int containerId, int sourcePortId, int destinationPortId)
+        public async Task<BookingResponse> BookContainerAsync(int userId, int containerId, int sourcePortId, int destinationPortId,DateOnly startingDate)
         {
             // Check if the container, user, and ports exist
             var container = await _containerRepository.GetByIdAsync(containerId);
@@ -83,21 +89,62 @@ namespace Application.Services
             await _bookingRepository.AddAsync(booking);
 
             // Update container's current port and available date
+           /* container.Capacity = container.Size;
+            container.Capacity = container.Capacity;*/
+            
             container.CurrentPortId = destinationPortId;
             container.AvailableFrom = deliveryDate;
 
             await _containerRepository.UpdateAsync(container);
+            var user =  _bookingRepository.GetUserDetails(userId);
+
+            if (user.Email == null)
+            {
+                throw new Exception("Email sholud not be null");
+            }
+
+
+
+            string emailBody = await _emailNotification.GenerateEmailBodyAsync(user, booking);
+           
+            _emailNotification.SendMailNotification(user.Email, "Booking Confirmation", emailBody);
 
             return new BookingResponse
             {
                 BookingId = booking.BookingId,
                 Message = "Container booked successfully."
             };
+            
         }
 
         public int CalculateNoOfDaysToReach(int sourcePortId, int destinationPortId)
         {
             return DISTANCE_GRAPH[sourcePortId - 1][destinationPortId - 1];
         }
+
+        public async Task<List<BookingDetailsReq>> GetBookingDetailsByUserId(int userId)
+        {
+            if (userId <= 0)
+            {
+                throw new ArgumentException("Invalid UserId");
+            }
+            try
+            {
+                // Fetch the list of bookings from the repository
+                var listOfBookings = await _bookingRepository.GetBookingDetailAsync(userId);
+
+                // Map the list of bookings to BookingDetailsReq
+                var bookingDetailsReq = _mapper.Map<List<BookingDetailsReq>>(listOfBookings);
+
+                return bookingDetailsReq;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while retrieving booking details.", ex);
+            }
+        }
+
+
+        
     }
 }

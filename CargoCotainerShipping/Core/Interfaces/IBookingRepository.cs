@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 using Core.Entities;
 
+
 namespace Core.Interfaces
 {
     
     public interface IBookingRepository
     {
         Task AddAsync(Booking booking);
+        Task<List<Booking>> GetBookingDetailAsync(int userId);
+         User GetUserDetails(int userID);
     }
 }
