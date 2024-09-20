@@ -1,0 +1,34 @@
+.about-container {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .about-main {
+    padding: 60px 0;
+    background-color: wheat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+  
+  .mission-section,
+  .vision-section,
+  .values-section,
+  .services-section,
+  .team-section {
+    margin-bottom: 40px;
+  }
+  
+  h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  p, ul {
+    color: #555;
+  }
+  
+  .team-member {
+    margin-bottom: 20px;
+  }
+  
+
+  

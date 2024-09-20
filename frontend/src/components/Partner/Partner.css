@@ -1,0 +1,93 @@
+/* General Layout Styles */
+.partners-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the container takes full viewport height */
+font-size: larger;
+font-weight: 700;
+  }
+  
+  /* Header Styles */
+  .partners-header {
+    background-color: #f1dfdf; /* Dark blue-gray background */
+    color: #fff;
+    padding: 2px;
+    text-align: center;
+    border: 2px solid rgb(255, 251, 251);
+    width: 50%;
+margin-left: 25%;
+margin-top: 40px;
+  }
+  
+  .partners-header h1 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .partners-header p {
+    font-size: 1.2rem;
+   font-weight: 200;
+  }
+  
+  /* Partner Info Section */
+  .partners-info {
+    padding: 2rem 0;
+  }
+  
+  .partner-card {
+    background-color: #fff;
+
+    border-radius: 8px;
+
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .partner-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .partner-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .partner-card p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* Call to Action Section */
+  .call-to-action {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+  }
+  
+  .call-to-action h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .call-to-action p {
+    margin-bottom: 1rem;
+  }
+  
+  .call-to-action .btn {
+    background-color: #1560c8; /* Blue background */
+    color: #fff;
+    border: none;
+  }
+  
+  .call-to-action .btn:hover {
+    background-color: #0a408d; /* Darker blue on hover */
+  }
+  
+  /* Footer Styles */
+  .partners-footer {
+    background-color: #ced2d6; /* Light background color */
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #d4cece; /* Subtle border */
+  }
+  

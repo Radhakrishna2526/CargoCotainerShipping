@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
+using Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Services
-{
-
-    public class BookingRequest
-    {
-        public int UserId { get; set; }
-        public int ContainerId { get; set; }
-        public int SourcePortId { get; set; }
-        public int DestinationPortId { get; set; }
-    }
-
-    public class BookingResponse
-    {
-        public int BookingId { get; set; }
-        public string Message { get; set; }
-    }
-
+{        
     public class BookingService
     {
         private readonly IBookingRepository _bookingRepository;
         private readonly IContainerRepository _containerRepository;
+        private readonly IEmailNotificationRepository _emailNotificationRepository;
+        private readonly IUserRepository _userRepository;
 
         public List<List<int>> DISTANCE_GRAPH = new List<List<int>>
         {
@@ -44,13 +32,18 @@ namespace Application.Services
 
         public BookingService(
             IBookingRepository bookingRepository,
-            IContainerRepository containerRepository)
+            IContainerRepository containerRepository,
+            IEmailNotificationRepository emailNotificationRepository,
+            IUserRepository userRepository
+        )
         {
             _bookingRepository = bookingRepository;
             _containerRepository = containerRepository;
+            _emailNotificationRepository = emailNotificationRepository;
+            _userRepository = userRepository;
         }
 
-        public async Task<BookingResponse> BookContainerAsync(int userId, int containerId, int sourcePortId, int destinationPortId)
+        public async Task<BookingResponse> BookContainerAsync(int userId, int containerId, int sourcePortId, int destinationPortId, DateOnly shippingDate)
         {
             // Check if the container, user, and ports exist
             var container = await _containerRepository.GetByIdAsync(containerId);
@@ -66,7 +59,7 @@ namespace Application.Services
             //if (destinationPort == null) throw new Exception("Destination Port not found.");
 
 
-            DateOnly deliveryDate = container.AvailableFrom.Value.AddDays(CalculateNoOfDaysToReach(sourcePortId, destinationPortId));
+            DateOnly deliveryDate = shippingDate.AddDays(CalculateNoOfDaysToReach(sourcePortId, destinationPortId));
 
             // Create a new Booking
             var booking = new Booking
@@ -87,6 +80,20 @@ namespace Application.Services
             container.AvailableFrom = deliveryDate;
 
             await _containerRepository.UpdateAsync(container);
+
+            var user = await _userRepository.GetUserById(userId);
+
+            if (user.Email == null)
+            {
+                throw new Exception("Email sholud not be null");
+            }
+
+
+
+            string emailBody = await _emailNotificationRepository.GenerateEmailBodyAsync(user, booking);
+
+            _emailNotificationRepository.SendMailNotification(user.Email, "Booking Confirmation", emailBody);
+
 
             return new BookingResponse
             {

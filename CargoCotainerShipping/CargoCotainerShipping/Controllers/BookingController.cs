@@ -25,7 +25,7 @@ namespace CargoCotainerShipping.Controllers
             try
             {
                 var response = await _bookingService.BookContainerAsync(
-                    request.UserId, request.ContainerId, request.SourcePortId, request.DestinationPortId);
+                    request.UserId, request.ContainerId, request.SourcePortId, request.DestinationPortId, request.ShippingDate);
 
                 return Ok(response);
             }
