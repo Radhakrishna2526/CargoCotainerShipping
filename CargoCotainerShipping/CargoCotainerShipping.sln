@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargoCotainerShipping", "CargoCotainerShipping\CargoCotainerShipping.csproj", "{4C78BF40-AD50-4050-B8CD-048A3B8EFA34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CargoCotainerShipping", "CargoCotainerShipping\CargoCotainerShipping.csproj", "{4C78BF40-AD50-4050-B8CD-048A3B8EFA34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{5DF9957F-7560-43D7-B8AB-51F372BE9060}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{5DF9957F-7560-43D7-B8AB-51F372BE9060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{1B3BA85F-B897-475B-9419-687747318021}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{1B3BA85F-B897-475B-9419-687747318021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{0EA3A36C-6364-4584-8DD6-C77E62FAA024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{0EA3A36C-6364-4584-8DD6-C77E62FAA024}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargoContainerShippingTests", "CargoContainerShippingTests\CargoContainerShippingTests.csproj", "{C7BFCD35-792E-43B7-8827-E5A0E7C070B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0EA3A36C-6364-4584-8DD6-C77E62FAA024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA3A36C-6364-4584-8DD6-C77E62FAA024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA3A36C-6364-4584-8DD6-C77E62FAA024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7BFCD35-792E-43B7-8827-E5A0E7C070B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BFCD35-792E-43B7-8827-E5A0E7C070B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BFCD35-792E-43B7-8827-E5A0E7C070B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BFCD35-792E-43B7-8827-E5A0E7C070B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
