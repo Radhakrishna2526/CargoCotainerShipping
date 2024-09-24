@@ -34,5 +34,11 @@ namespace CargoCotainerShipping.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [HttpGet("GetBookingDetails/{userId:int}")]
+        public async Task<IActionResult> GetBookingDetailsById(int userId)
+        {
+            var response = await _bookingService.GetBookingDetailsByUserId(userId);
+            return Ok(response);
+        }
     }
 }

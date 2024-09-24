@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,16 @@ namespace Infrastructure.Repositories
         {
             _dbContext.Bookings.Add(booking);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<Booking>> GetAllBookingsByUserIdAsync(int userId)
+        {
+            return await _dbContext.Bookings.Where(x => x.UserId == userId)
+                .Include(x => x.User)
+                .Include(x => x.Container)
+                .Include(x => x.SourcePort)
+                .Include(x => x.DestinationPort)
+                .ToListAsync();
         }
     }
 }
