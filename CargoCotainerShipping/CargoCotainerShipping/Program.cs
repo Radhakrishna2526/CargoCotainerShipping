@@ -39,6 +39,8 @@ builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<UserService>();
 
+builder.Services.AddScoped<IPortRepository, PortRepository>();
+builder.Services.AddScoped<PortRepository>();
 builder.Services.AddScoped<IEmailNotificationRepository, EmailNotificationRepositories>();
 
 builder.Services.AddControllers();

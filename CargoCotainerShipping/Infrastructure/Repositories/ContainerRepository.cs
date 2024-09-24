@@ -29,7 +29,6 @@ namespace Infrastructure.Repositories
         {
             return await _context.Containers.FindAsync(id);
         }
-
         public async Task UpdateAsync(Container container)
         {
             _context.Containers.Update(container);
