@@ -49,6 +49,10 @@ namespace Application.Services
             var container = await _containerRepository.GetByIdAsync(containerId);
             if (container == null) throw new Exception("Container not found.");
 
+            if(shippingDate < DateOnly.FromDateTime(DateTime.Now))
+            {
+                throw new Exception("Your date sholud not less Than Today's Date");
+            }
             //var user = await _userRepository.GetByIdAsync(userId);
             //if (user == null) throw new Exception("User not found.");
 
