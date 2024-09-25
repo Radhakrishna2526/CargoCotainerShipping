@@ -35,5 +35,16 @@ namespace Infrastructure.Repositories
                 .Include(x => x.DestinationPort)
                 .ToListAsync();
         }
+
+        public async Task<Booking> GetByBookingIdAsync(int id)
+        {
+            return await _dbContext.Bookings.Where(x => x.BookingId == id)
+                .Include(x => x.User)
+                .Include(x => x.Container)
+                .Include(x => x.SourcePort)
+                .Include(x => x.DestinationPort).SingleAsync();
+
+
+        }
     }
 }

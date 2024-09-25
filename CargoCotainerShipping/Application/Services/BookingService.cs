@@ -154,5 +154,44 @@ namespace Application.Services
             }
         }
 
+        public async Task<BookingDetailsResponse> GetBookingDetailsByBookingId(int bookingId)
+        {
+            try
+            {
+
+
+                var response = await _bookingRepository.GetByBookingIdAsync(bookingId);
+
+                var booking = new Booking();
+                var deliveryDays = CalculateNoOfDaysToReach((int)response.SourcePortId, (int)response.DestinationPortId);
+
+                // Calculate the starting date by subtracting delivery days from the delivery date
+                var startingDate = response.DeliveryDate.AddDays(-deliveryDays);
+
+                // Create the booking detail object using DateOnly
+                var bookingDetail = new BookingDetailsResponse
+                {
+                    BookingId = response.BookingId,
+                    UserId = (int)response.UserId,
+                    UserName = response.User.Name,
+                    ContainerType = response.Container.Type,
+                    ContainerSize = response.Container.Size,
+                    SourceportLocation = response.SourcePort.Location,
+                    DestinationportLocation = response.DestinationPort.Location,
+                    BookingDate = DateOnly.FromDateTime(response.Created),
+                    DeliveryDate = response.DeliveryDate,
+                    OutOfDelivery = startingDate
+                };
+
+                return bookingDetail;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error at getting boooking details");
+            }
+            
+        }
+
     }
 }
