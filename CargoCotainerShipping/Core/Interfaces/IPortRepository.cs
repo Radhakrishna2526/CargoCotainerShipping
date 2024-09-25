@@ -10,6 +10,6 @@ namespace Core.Interfaces
     public interface IPortRepository
     {
         Task<Port> GetPortLocationById(int id);
-        
+        Task<List<Port>> GetListOfPorts();        
     }
 }
