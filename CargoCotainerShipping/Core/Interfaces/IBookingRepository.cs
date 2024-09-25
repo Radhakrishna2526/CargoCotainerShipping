@@ -12,5 +12,6 @@ namespace Core.Interfaces
     public interface IBookingRepository
     {
         Task AddAsync(Booking booking);
+        Task<List<Booking>> GetAllBookingsByUserIdAsync(int userId);
     }
 }

@@ -15,6 +15,7 @@ namespace Application.Services
         private readonly IContainerRepository _containerRepository;
         private readonly IEmailNotificationRepository _emailNotificationRepository;
         private readonly IUserRepository _userRepository;
+        
 
         public List<List<int>> DISTANCE_GRAPH = new List<List<int>>
         {
@@ -110,5 +111,48 @@ namespace Application.Services
         {
             return DISTANCE_GRAPH[sourcePortId - 1][destinationPortId - 1];
         }
+
+        public async Task<List<BookingDetailsResponse>> GetBookingDetailsByUserId(int userId)
+        {
+           
+            try
+            {
+                var listOfBookings = await _bookingRepository.GetAllBookingsByUserIdAsync(userId);
+
+                // Map the list of bookings to BookingResponseDetails
+                var bookingDetailsList = new List<BookingDetailsResponse>();
+
+                foreach (var book in listOfBookings)
+                {
+                    var deliveryDays = CalculateNoOfDaysToReach((int)book.SourcePortId, (int)book.DestinationPortId);
+
+                    // Calculate the starting date by subtracting delivery days from the delivery date
+                    var startingDate = book.DeliveryDate.AddDays(-deliveryDays);
+
+                    // Create the booking detail object using DateOnly
+                    var bookingDetail = new BookingDetailsResponse
+                    {
+                        BookingId = book.BookingId,
+                        UserName = book.User.Name,
+                        ContainerType = book.Container.Type,
+                        ContainerSize = book.Container.Size,
+                        SourceportLocation = book.SourcePort.Location,
+                        DestinationportLocation = book.DestinationPort.Location,
+                        BookingDate = DateOnly.FromDateTime(book.Created),
+                        DeliveryDate = book.DeliveryDate, 
+                        OutOfDelivery = startingDate
+                    };
+
+                    bookingDetailsList.Add(bookingDetail);
+                }
+
+                return bookingDetailsList;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while retrieving booking details.", ex);
+            }
+        }
+
     }
 }
