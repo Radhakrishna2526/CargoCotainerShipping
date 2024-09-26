@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace Infrastructure.Repositories
         {
             _context = context;
         }
+
+        public async Task<List<Port>> GetListOfPorts()
+        {
+           return await _context.Ports.ToListAsync();
+        }
+
         public async Task<Port> GetPortLocationById(int id)
         {
             var port=  _context.Ports.Find(id);

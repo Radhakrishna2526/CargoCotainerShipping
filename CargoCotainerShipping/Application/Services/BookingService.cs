@@ -136,8 +136,8 @@ namespace Application.Services
                         UserName = book.User.Name,
                         ContainerType = book.Container.Type,
                         ContainerSize = book.Container.Size,
-                        SourceportLocation = book.SourcePort.Location,
-                        DestinationportLocation = book.DestinationPort.Location,
+                        SourceportLocation = book.SourcePort.Name,
+                        DestinationportLocation = book.DestinationPort.Name,
                         BookingDate = DateOnly.FromDateTime(book.Created),
                         DeliveryDate = book.DeliveryDate, 
                         OutOfDelivery = startingDate
