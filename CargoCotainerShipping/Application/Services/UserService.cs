@@ -17,13 +17,14 @@ namespace Application.Services
             _userRepository = userRepository;
         }
 
-        public async Task<User> RegisterUser(string name, string email, string password)
+        public async Task<User> RegisterUser(string name, string email, string password, string phoneNo)
         {
             var user = new User
             {
                 Name = name,
                 Email = email,
-                Password = password
+                Password = password,
+                Phone = phoneNo
             };
 
             user.HashPassword(); // Hash the password before saving

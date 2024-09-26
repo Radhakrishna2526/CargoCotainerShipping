@@ -44,8 +44,6 @@ namespace Core.Entities
         public ICollection<Booking>? Bookings { get; set; }
 
         //// Additional methods for password handling and token generation
-        //[NotMapped]
-        //public string ConfirmPassword { get; set; }
 
         // Hash password before saving
         public void HashPassword()
