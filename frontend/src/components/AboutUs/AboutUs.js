@@ -1,17 +1,14 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './AboutUs.css'; // You can create a separate CSS file for custom styling if needed
+import './AboutUs.css'; // Ensure this CSS file is linked
 
 const AboutUs = () => {
   return (
     <div className="about-container">
-      {/* Navbar */}
-     
-      {/* Main About Section */}
       <div className="about-main">
         <div className="container">
           <h1 className="text-center">About U.S WEST CARGO Logistics</h1>
-          <p className="lead text-center">
+          <p className="text-center">
             At U.S WEST CARGO Logistics, we pride ourselves on delivering exceptional cargo and logistics services, ensuring that your shipments reach their destination on time and in perfect condition.
           </p>
           
@@ -66,21 +63,21 @@ const AboutUs = () => {
             <div className="row">
               <div className="col-md-4">
                 <div className="team-member">
-                  <img src="path_to_image1" className="img-fluid rounded-circle" alt="Team Member 1" />
+                  
                   <h5 className="text-center">John Doe</h5>
                   <p className="text-center">CEO</p>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="team-member">
-                  <img src="path_to_image2" className="img-fluid rounded-circle" alt="Team Member 2" />
+                 
                   <h5 className="text-center">Jane Smith</h5>
                   <p className="text-center">COO</p>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="team-member">
-                  <img src="path_to_image3" className="img-fluid rounded-circle" alt="Team Member 3" />
+                  
                   <h5 className="text-center">Michael Lee</h5>
                   <p className="text-center">CFO</p>
                 </div>
@@ -89,9 +86,6 @@ const AboutUs = () => {
           </section>
         </div>
       </div>
-
-      {/* Footer */}
-      
     </div>
   );
 };

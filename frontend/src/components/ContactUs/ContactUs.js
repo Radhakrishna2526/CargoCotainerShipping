@@ -1,8 +1,27 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ContactUs.css'; 
+import 'font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 
 const ContactUs = () => {
+  const handleEmail = (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Get input values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+
+    // Create mailto link
+    const mailtoLink = `mailto:support@uscargo.com?subject=Contact Form Submission from ${name}&body=Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AMessage: ${message}`;
+    
+    // Open mail client
+    window.location.href = mailtoLink;
+  };
+
   return (
     <div className="contact-page-container">
       <div className="container mt-5">
@@ -14,7 +33,7 @@ const ContactUs = () => {
         {/* Contact Form */}
         <div className="row justify-content-center">
           <div className="col-md-8">
-            <form>
+            <form onSubmit={handleEmail}>
               <div className="form-group">
                 <label htmlFor="name">Full Name</label>
                 <input type="text" className="form-control" id="name" placeholder="Enter your full name" required />

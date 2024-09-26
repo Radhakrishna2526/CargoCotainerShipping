@@ -1,16 +1,24 @@
 .contact-page-container {
-    background-color: rgb(234, 232, 183);
+    background-color: rgb(15, 15, 15);
      min-height: 100vh;
      display: flex;
      align-items: center;
      justify-content: center;
+     background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent overlay */
+  border-radius: 10px; /* Rounded corners */
+  color: #141414; /* White text for better contrast */
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px); 
+  background-image: url('/public/images/4.jpg');
    }
    
    .container {
-     background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    /* Semi-transparent background */
      padding: 40px;
      border-radius: 10px;
      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     background-color: rgba(243, 236, 236, 0.959);
    }
    
    h2, p {

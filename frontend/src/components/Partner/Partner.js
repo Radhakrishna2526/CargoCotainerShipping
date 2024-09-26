@@ -6,7 +6,7 @@ const Partner = () => {
   return (
     <div className="partners-container">
       <header className="partners-header">
-        <h1>Partners with Us West</h1>
+        <h1>Partners with U.S West</h1>
         <p>Join a network of innovative and forward-thinking companies. Partner with Us West for mutual growth and success.</p>
       </header>
 

@@ -1,0 +1,127 @@
+.login-page {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Position relative for absolute children */
+  overflow: hidden; /* Hide overflow for better appearance */
+}
+
+.background-image {
+  position: absolute; /* Positioning the image absolutely */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/public/images/4.jpg') no-repeat center center fixed; /* Background image */
+  background-size: cover; /* Cover the entire page */
+  z-index: 0; /* Place it behind other elements */
+}
+
+.dim-overlay {
+  position: absolute; /* Positioning the overlay absolutely */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay for dimming */
+  z-index: 1; /* Place it above the background image */
+}
+
+.auth-container {
+  position: relative; /* Keep it on top of the overlay */
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.76); /* Slightly opaque background */
+  border-radius: 15px; /* Rounded corners for a softer look */
+  padding: 40px; /* Increased padding for a more spacious feel */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); /* Enhanced shadow for more depth */
+  z-index: 2; /* Ensure the container is on top of the overlay */
+}
+
+.auth-form {
+  text-align: center;
+}
+
+.auth-form h2 {
+  color: #2e2b2b; /* Darker color for better contrast */
+  font-size: 28px; /* Increased font size for the title */
+  margin-bottom: 20px;
+  font-weight: bold; /* Bold font for better emphasis */
+  background-color: rgba(240, 169, 169, 0.76);
+  width: 250px;
+  border-radius: 5px;
+  margin-left: 20%;
+
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  color: #2b2b2b; /* Darker label color for better visibility */
+  font-size: 16px; /* Increased label size for better readability */
+  display: block;
+  margin-bottom: 5px;
+  font-weight:bold
+}
+
+input {
+  width: 100%;
+  padding: 12px; /* Increased padding for input fields */
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.774); /* Increased transparency for input background */
+  color: #333; /* Dark text for input fields */
+  outline: none;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  background-color: rgba(255, 255, 255, 1); /* Fully opaque background on focus */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Enhanced shadow on focus */
+}
+
+.auth-button {
+  width: 100%;
+  padding: 14px; /* Increased button padding for better touch targets */
+  background-color: #178d3e; /* Bootstrap primary color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+}
+
+.auth-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.toggle-link {
+  margin-top: 20px;
+  color: #007bff; /* Link color */
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.toggle-link:hover {
+  color: #0056b3; /* Darker on hover */
+}
+
+@media (max-width: 400px) {
+  .auth-container {
+    padding: 20px;
+  }
+
+  input, .auth-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

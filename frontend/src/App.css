@@ -1,100 +1,4 @@
-/* Navbar container */
 
-.navbar {
-  background-color: #0a408d; /* Dark blue-gray background */
-  padding: 0.6rem 2rem; /* Add padding for better spacing */
-  box-shadow: 0 4px 8px rgba(25, 28, 231, 0.1); /* Light shadow for depth */
-  display: flex; /* Enable Flexbox for the navbar */
-  justify-content: space-between; /* Distribute space between items */
-  align-items: center; /* Center items vertically */
-}
-
-
-/* Logo styling */
-img {
-width: 100px;  /* Adjust this value to your preferred width */
-height: 150px; /* Adjust this value as needed */
-border-radius: 50%; /* Round corners for a circular logo */
-/* border: 2px solid rgb(118, 190, 235);  Add border for emphasis */
-border: 3px solid  #d70f2a;
-box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
-}
-
-/* Default link styles */
-.navbar-nav {
-display: flex; /* Enable Flexbox */
-flex-direction: row; /* Align items in a row */
-margin: 0; /* Remove default margin */
-padding: 0; /* Remove default padding */
-list-style: none; /* Remove default list styling */
-}
-
-.navbar-nav .nav-item {
-margin: 0px 48px; /* Space between nav items */
-}
-
-.navbar-nav .nav-link {
-color: #0a408d; /* White text color */
-padding: 0.6rem ;
-padding-right: 8rem; /* Add padding to make the link appear as a button */
-border-radius: 740px; /* Fully rounded corners for button-like appearance */
-text-transform: uppercase; /* Optional: Make text uppercase */
-transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-display: inline-flex; /* Ensures padding and border-radius work well */
-align-items: center; /* Center align items vertically */
-justify-content: center;
- background-color: #ffffff; /* Red background color on hover */
-border: 1.8px solid #d70f2a; /* Border color on hover */
-font-weight:700; /* Font weight on hover */
-box-shadow: rgb(8, 8, 8)/* Center align items horizontally */
-}
-
-/* Hover and active states */
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-item.active .nav-link {
-color: #f9f8f8; /* Light text color on hover */
-background-color: #d70f2a; /* Red background color on hover */
-/* Border color on hover */
-font-weight: 500; /* Font weight on hover */
-box-shadow: 0 6px 12px rgba(15, 15, 15, 0.2);
-padding: 11px; /* Subtle shadow effect */
-}
-
-/* Focus state for accessibility */
-.navbar-nav .nav-link:focus {
-outline: none; /* Remove default outline */
-box-shadow: 0 0 0 0.2rem rgba(38,143,255,0.5); /* Add a custom focus ring */
-}
-.navbar .btn-long {
-display: inline-flex; /* Aligns items in a row and allows for centering */
-align-items: center; /* Centers content vertically */
-justify-content: center;
-margin-right: 50px; /* Centers content horizontally */
-padding: 0.75rem 2rem; /* Provides space inside the button */
-border-radius: 50px; /* Rounded corners */
-
-background-color: #1560c8;/* White background color */
-color: #f9fafb; /* Dark blue text color */
-
-font-weight: 500; /* Font weight for better readability */
-text-transform: uppercase; /* Uppercase text for emphasis */
-transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); 
-
-}
-.navbar .btn-long:hover {
-background-color: #1560c8; /* Dark blue background on hover */
-color: #ffffff; /* White text color on hover */
-border-color: #0a408d; /* Dark blue border color on hover */
-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-
-}
-
-/* Focus effect for accessibility */
-.navbar .btn-long:focus {
-outline: none; /* Remove default outline */
-box-shadow: 0 0 0 0.2rem rgba(0, 100, 213, 0.5); /* Custom focus ring */
-}
 /* Background video container styling */
 .video-container {
 position: fixed;
@@ -123,13 +27,13 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 2); /* Add a shadow for visibility */
 font-size: 3.5rem; /* Larger font size for better prominence */
 margin-bottom: 1rem; /* Increased margin for better spacing */
 font-weight: bold;
-color: white;
+color: rgba(255, 255, 255, 0.767);
 
 font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .overlay-text p {
-color: white;
+color: rgba(255, 255, 255, 0.733);
 font-size: 1.6rem; /* Slightly smaller font size for paragraphs */
 line-height: 2; /* Improved line spacing for readability */
 margin: 0.5rem 0; /* Even spacing between paragraphs */
@@ -156,6 +60,7 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
   box-sizing: border-box; /* Ensures padding is included in the width calculation */
+
 }
 #btn{
 display: inline-flex; /* Aligns items in a row and allows for centering */
@@ -183,72 +88,6 @@ background-color: #ffffff;
 border-color: #0a408d; /* Dark blue border color on hover */
 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
 }
-.footer {
-background-color: #f8f9fa; /* Light background color */
-padding: 40px 20px;
-border-top: 1px solid #e0e0e0; /* Subtle border */
-}
 
-.footer-top {
-display: flex;
-justify-content: space-between;
-flex-wrap: wrap;
-margin-bottom: 20px;
-}
-
-.social-links {
-display: flex;
-gap: 15px;
-}
-
-.social-icon {
-text-decoration: none;
-color: #000; /* Black color for icons */
-font-weight: bold;
-}
-
-.contact-info h3 {
-margin-bottom: 10px;
-}
-
-.contact-info p {
-margin: 5px 0;
-}
-
-.footer-bottom {
-display: flex;
-flex-direction: column;
-gap: 15px;
-}
-
-.footer-links {
-list-style: none;
-padding: 0;
-margin: 0;
-display: flex;
-flex-wrap: wrap;
-gap: 15px;
-}
-
-.footer-links li {
-margin: 0;
-}
-
-.footer-links a {
-text-decoration: none;
-color: #000; /* Black color for links */
-font-weight: bold;
-}
-
-.app-links {
-display: flex;
-gap: 15px;
-margin-top: 20px;
-}
-
-.app-store, .play-store {
-text-decoration: none;
-color: #000; /* Black color for store links */
-font-weight: bold;
-}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 

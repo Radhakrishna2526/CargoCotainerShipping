@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link, createSearchParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
 
+import {addContainerToCart} from '../../actions/bookingActions'
 import './ContainerAvailability.css'; // Import the CSS file
 
 const ContainerAvailability = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [location, setLocation] = useState('');
     const [locationId, setLocationId] = useState(0);
     const [destination, setDestination] = useState('');
@@ -61,6 +68,17 @@ const ContainerAvailability = () => {
         setDestination(e.target.value);
         setDestinationId(e.target.selectedIndex);
     }
+
+    
+    const handleBook = async (containerId, locationId, destinationId, availableFrom) => {
+        dispatch(addContainerToCart(containerId, locationId, destinationId, availableFrom))
+        navigate({
+            pathname: '/login',
+            search: `?${createSearchParams({
+                redirect: 'payment'
+            })}`
+        })
+    };
 
     return (
         <div className="container-availability">
@@ -139,20 +157,21 @@ const ContainerAvailability = () => {
 
 export default ContainerAvailability;
 
-const handleBook = async (containerId, locationId, destinationId, availableFrom) => {
-    try {
-        // Make a POST request to book the container
-        await axios.post('https://localhost:7240/api/Booking/book', { 
+
+// const handleBook = async (containerId, locationId, destinationId, availableFrom) => {
+//     try {
+//         // Make a POST request to book the container
+//         await axios.post('https://localhost:7240/api/Booking/book', { 
             
-                userId: 1,
-                containerId,
-                sourcePortId: locationId,
-                destinationPortId: destinationId,
-                shippingDate: availableFrom
+//                 userId: 1,
+//                 containerId,
+//                 sourcePortId: locationId,
+//                 destinationPortId: destinationId,
+//                 shippingDate: availableFrom
             
-        });
-        alert(`Container ${containerId} has been booked successfully!`);
-    } catch (err) {
-        alert(`Failed to book container ${containerId}. Please try again.`);
-    }
-};
+//         });
+//         alert(`Container ${containerId} has been booked successfully!`);
+//     } catch (err) {
+//         alert(`Failed to book container ${containerId}. Please try again.`);
+//     }
+// };

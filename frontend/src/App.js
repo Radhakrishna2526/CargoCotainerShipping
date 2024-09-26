@@ -10,6 +10,10 @@ import ContactUs from './components/ContactUs/ContactUs';
 import Home from './components/Home';
 import Partner from './components/Partner/Partner';
 import ContainerAvailability from './components/ContainerAvailability/ContainerAvailability';
+import PaymentForm from './components/Payment/payment';
+import AuthForm from './components/Login&register/Login';
+import RegisterForm from './components/Login&register/Register';
+import BookedContainers from './components/Orders/Orders';
 
  const routerr = createBrowserRouter([
    {
@@ -20,7 +24,12 @@ import ContainerAvailability from './components/ContainerAvailability/ContainerA
       { path: 'about', element: <AboutUs /> },  // About Us Page route
       { path: 'contact', element: <ContactUs /> },  
       {path:'/',element:<Home/>},
+     
       { path: 'book-cargo', element: <ContainerAvailability /> },
+      {path:'payment',element:<PaymentForm/>},
+      {path:'login',element:<AuthForm />},
+      {path:'register',element:<RegisterForm />},
+      {path:'orders',element:<BookedContainers />},
       
     ],    
   },

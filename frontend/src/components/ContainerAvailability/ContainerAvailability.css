@@ -27,7 +27,7 @@ body {
 }
 
 .form-container {
-    background: rgba(164, 195, 221, 0.7);
+    background: rgba(255, 255, 255, 0.7);
     padding: 20px;
     border-radius: 10px;
     width: 100%;
@@ -67,8 +67,16 @@ body {
 }
 
 .error {
-    color: #ff4d4d;
-    margin: 20px;
+    background-color: #fff; /* White background */
+    color: #d62424; /* Red text color to highlight the error */
+    padding: 15px; /* Add padding for better readability */
+    margin: 20px auto; /* Center the error message */
+    border-radius: 8px; /* Rounded corners */
+    max-width: 600px; /* Limit the width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    font-size: 16px; /* Slightly larger font size */
+    text-align: center; /* Center the text */
+    border: 1px solid #ce1818;
 }
 
 .container-list {
@@ -80,7 +88,7 @@ body {
 .container-list table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(247, 247, 247);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

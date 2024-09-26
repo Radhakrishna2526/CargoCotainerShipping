@@ -5,18 +5,21 @@
     min-height: 100vh; /* Ensure the container takes full viewport height */
 font-size: larger;
 font-weight: 700;
+background-image: url('/public/images/2.jpg'); 
   }
   
   /* Header Styles */
   .partners-header {
-    background-color: #f1dfdf; /* Dark blue-gray background */
+    background-color: #f5bec1; /* Dark blue-gray background */
     color: #fff;
     padding: 2px;
     text-align: center;
     border: 2px solid rgb(255, 251, 251);
-    width: 50%;
-margin-left: 25%;
+    width: 65%;
+margin-left: 17%;
 margin-top: 40px;
+border-radius: 4px;
+
   }
   
   .partners-header h1 {

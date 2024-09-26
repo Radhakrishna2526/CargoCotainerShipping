@@ -1,34 +1,80 @@
 .about-container {
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .about-main {
-    padding: 60px 0;
-    background-color: wheat;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Arial', sans-serif;
+  position: relative; /* Necessary for positioning */
+  overflow: hidden; /* Prevents overflow from children elements */
+  background: transparent; /* Ensure this container is transparent */
+}
+
+/* Main About Section */
+.about-main {
+  padding: 60px 20px;
+
+  /* Background image */
+  background-image: url('/public/images/5.jpg'); /* Make sure the path is correct */
+  background-size: cover; /* Ensures the background image covers the section */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating of the image */
+
+  /* Frosted glass effect */
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent overlay */
+  border-radius: 10px; /* Rounded corners */
+  color: #141414; /* White text for better contrast */
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+}
+
+/* Headings */
+h1, h2 {
+  color: #ff3b55; /* Yellow for visibility */
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+/* Paragraphs and list */
+p, ul {
+  color: #fa0606; /* Light grey text for readability */
+  font-size: 18px;
+  line-height: 1.6;
+}
+h2{
+  color: black;
 
 }
-  
-  .mission-section,
-  .vision-section,
-  .values-section,
-  .services-section,
-  .team-section {
-    margin-bottom: 40px;
-  }
-  
-  h1, h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  p, ul {
-    color: #555;
-  }
-  
-  .team-member {
-    margin-bottom: 20px;
-  }
-  
+/* Sections */
+.mission-section,
+.vision-section,
+.values-section,
+.services-section,
+.team-section {
+  margin-bottom: 40px;
+}
 
-  
+/* Team member image styling */
+.team-member img {
+  border-radius: 50%; /* Circular images for team members */
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow around images */
+}
+
+/* Text shadow for readability */
+.about-main h1, .about-main h2, .about-main p, .about-main ul {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Enhances text readability */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-main {
+    padding: 40px 20px; /* Adjust padding for smaller screens */
+  }
+
+  h1, h2 {
+    font-size: 24px; /* Smaller headings */
+  }
+
+  p, ul {
+    font-size: 16px; /* Smaller text */
+  }
+}

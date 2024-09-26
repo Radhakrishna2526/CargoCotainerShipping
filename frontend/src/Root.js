@@ -7,7 +7,7 @@ return(
     <>
  <Header />
     <Outlet/>
-    <Footer />
+
     </>
 )
 }
