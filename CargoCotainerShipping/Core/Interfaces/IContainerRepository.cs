@@ -12,5 +12,7 @@ namespace Core.Interfaces
         Task<List<Container>> GetAvailableContainersByPortAndDateAsync(int portId, DateOnly availableFrom);
         Task<Container> GetByIdAsync(int id);
         Task UpdateAsync(Container container);
+
+        Task<Container> AddContainer(Container container);
     }
 }

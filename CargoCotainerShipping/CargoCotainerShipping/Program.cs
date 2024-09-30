@@ -3,8 +3,12 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Core.Interfaces;
 using Application.Services;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
 
 builder.Services.AddCors(options =>
 {
@@ -43,8 +47,16 @@ builder.Services.AddScoped<IPortRepository, PortRepository>();
 builder.Services.AddScoped<PortRepository>();
 builder.Services.AddScoped<IEmailNotificationRepository, EmailNotificationRepositories>();
 
+
 builder.Services.AddControllers();
 
+builder.Services.AddAuthentication("Basic")
+    .AddScheme<AuthenticationSchemeOptions,BasicAuthenticationHandler>("Basic", null); // Make sure you create BasicAuthenticationHandler
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+});
 
 var app = builder.Build();
 
@@ -60,7 +72,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); // Make sure this is added before UseAuthorization
 app.UseAuthorization();
+
 
 app.MapControllers();
 

@@ -31,12 +31,12 @@ namespace Infrastructure.Repositories
             string smtpUser = _configuration["MailSettings:EmailId"];
             string smtpPassword = GetPassword();  
 
-            SmtpClient smtpClient = new SmtpClient(smtpHost, smtpPort);
+            var smtpClient = new SmtpClient(smtpHost, smtpPort);
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = new NetworkCredential(fromEmail, GetPassword());
 
-            MailMessage mailMessage = new MailMessage();
+            var mailMessage = new MailMessage();
             mailMessage.From = new MailAddress(fromEmail);
             mailMessage.To.Add(toEmail);
             mailMessage.Subject = subject;

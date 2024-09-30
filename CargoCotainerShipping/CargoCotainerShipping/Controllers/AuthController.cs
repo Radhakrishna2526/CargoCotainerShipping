@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Http;
 //using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Application.Services;
+using CargoContainerShipping.Filters;
+
+
 
 namespace CargoCotainerShipping.Controllers
 {
@@ -12,10 +15,11 @@ namespace CargoCotainerShipping.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserService _userService;
-
-        public AuthController(UserService userService)
+        private readonly ContainerService _containerService;
+        public AuthController(UserService userService,ContainerService containerService)
         {
             _userService = userService;
+            _containerService = containerService;
         }
 
         [HttpPost("register")]
@@ -30,6 +34,22 @@ namespace CargoCotainerShipping.Controllers
         {
             var user = await _userService.LoginUser(request.Email, request.Password);
             return SendTokenResponse(user, 200);
+        }
+
+       
+        [MyAuthorize(Roles = "Admin")]
+        [HttpPost("AddContainer")]
+        public async Task<IActionResult> AddContainer(ContainerDto container)
+        {
+            var result = await _containerService.AddContainer(container);
+            if (result != null)
+            {
+                return Ok(result); // Return the result if successful
+            }
+            else
+            {
+                return BadRequest("Failed to add container."); // Handle failure
+            }
         }
 
         private IActionResult SendTokenResponse(User user, int statusCode)

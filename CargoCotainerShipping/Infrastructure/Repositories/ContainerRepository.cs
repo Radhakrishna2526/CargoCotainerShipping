@@ -19,6 +19,13 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
+        public async Task<Container> AddContainer(Container container)
+        {
+           _context.Containers.Add(container);
+           await _context.SaveChangesAsync(); 
+            return container;
+        }
+
         public async Task<List<Container>> GetAvailableContainersByPortAndDateAsync(int portId, DateOnly availableFrom)
         {
             return await _context.Containers
