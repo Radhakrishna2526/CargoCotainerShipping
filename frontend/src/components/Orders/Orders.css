@@ -22,6 +22,7 @@ margin-left: 10%;
 Form.Lable{
  width: 50px;   
 }
+
 /* Background image style */
 .background {
     position: fixed; /* Fixed position to cover entire screen */
@@ -30,12 +31,20 @@ Form.Lable{
     width: 100%;
     height: 100%;
     z-index: -1; /* Ensure it is behind other content */
-    background-image: url('/public/images/4.jpg'); /* Replace with your image URL */
+    background-image: url('/public/images/15.jpg'); /* Replace with your image URL */
     background-size: cover; /* Cover the entire screen */
     background-position: center; /* Center the image */
     opacity: 23; /* Optional: adjust opacity for overlay effect */
 }
-
+.dim-overlay {
+    position: absolute; /* Positioning the overlay absolutely */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.13); /* Semi-transparent black overlay for dimming */
+    z-index: 1; /* Place it above the background image */
+  }
 /* Styles for the BookingDetails table specifically */
 .booking-table {
     width: 100%; /* Full width */
@@ -45,7 +54,7 @@ Form.Lable{
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
 }
 button{
-    margin-top: 15px;
+    margin-top: 16px;
     background-color: #0b437e;
 }
 /* Table header styles */

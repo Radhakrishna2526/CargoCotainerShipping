@@ -52,9 +52,13 @@ const RegisterForm = () => {
     <div className="register-page">
       <div className="background-imagee"></div> {/* Background image */}
       <div className="dim-overlay"></div> {/* Dimmed overlay */}
-      <div className="auth-container">
+      <div className="auth-containerr">
         <form className="auth-form" onSubmit={handleRegister}>
+          <div className='top'>
+             <img src='./images/logo4.png' className="pic" alt="Logo" />
           <h2>Register</h2>
+          </div>
+       
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input

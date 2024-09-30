@@ -11,9 +11,11 @@ import Home from './components/Home';
 import Partner from './components/Partner/Partner';
 import ContainerAvailability from './components/ContainerAvailability/ContainerAvailability';
 import PaymentForm from './components/Payment/payment';
-import AuthForm from './components/Login&register/Login';
-import RegisterForm from './components/Login&register/Register';
+import AuthForm from './components/Auth/Login';
+import RegisterForm from './components/Auth/Register';
 import BookedContainers from './components/Orders/Orders';
+import ForgotPassword from './components/Auth/ForgotPassword'
+import ResetPassword from './components/Auth/ResetPassword'
 
  const routerr = createBrowserRouter([
    {
@@ -30,6 +32,8 @@ import BookedContainers from './components/Orders/Orders';
       {path:'login',element:<AuthForm />},
       {path:'register',element:<RegisterForm />},
       {path:'orders',element:<BookedContainers />},
+      {path:'password/forgot',element:<ForgotPassword />},
+      {path:'password/reset/:token',element:<ResetPassword />},
       
     ],    
   },

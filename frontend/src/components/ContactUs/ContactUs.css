@@ -11,6 +11,11 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px); 
   background-image: url('/public/images/4.jpg');
+  background-size: cover; /* Ensures the image covers the whole container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed;
+
    }
    
    .container {
@@ -26,7 +31,7 @@
    }
    
    form .form-group {
-     margin-bottom: 1.5rem;
+     margin-bottom: 0rem;
    }
    
    button.btn-primary {

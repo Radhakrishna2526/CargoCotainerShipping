@@ -32,6 +32,38 @@ namespace CargoCotainerShipping.Controllers
             return SendTokenResponse(user, 200);
         }
 
+        [HttpPost("forgot")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            try
+            {
+                await _userService.ForgotPasswordAsync(request.Email);
+                return Ok(new { success = true, message = $"Email sent to: {request.Email}" });
+            }
+            //catch (NotFoundException ex)
+            //{
+            //    return NotFound(new { message = ex.Message });
+            //}
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        [HttpPost("reset/{token}")]
+        public async Task<IActionResult> ResetPassword(string token, [FromBody] ResetPasswordRequest request)
+        {
+            try
+            {
+                await _userService.ResetPasswordAsync(token, request.NewPassword, request.ConfirmPassword);
+                return Ok(new { success = true, message = "Password has been reset" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         private IActionResult SendTokenResponse(User user, int statusCode)
         {
             string token = user.GenerateJwtToken("your_jwt_secretahfghfsgdhjgshhfjkshfjkhjkfhsjkdhgjsdhgjkshdjkfghsjhfjs", 24);

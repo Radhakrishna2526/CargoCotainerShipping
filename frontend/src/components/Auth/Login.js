@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Login.css';
 
@@ -9,7 +9,7 @@ import { login, clearErrors } from '../../actions/userActions';
 const AuthForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [keepSignedIn, setKeepSignedIn] = useState(false);  // Added state for the checkbox
   
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -21,23 +21,21 @@ const AuthForm = () => {
   const redirect = searchParams.get("redirect") ? `/${searchParams.get("redirect")}` : '/'
   
   useEffect(() => {
-
-    if(isAuthenticated) {
-        navigate(redirect)
+    if (isAuthenticated) {
+      navigate(redirect);
     }
 
-    if(error) {
-        alert(error);
-        dispatch(clearErrors());
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
     }
-
-}, [dispatch, isAuthenticated, error])
-
+  }, [dispatch, isAuthenticated, error]);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(login(email, password))
-    console.log('Logging in:', { email, password });
+    // Add keepSignedIn to the dispatch if necessary
+    dispatch(login(email, password, keepSignedIn));
+    console.log('Logging in:', { email, password, keepSignedIn });
   };
 
   return (
@@ -46,7 +44,11 @@ const AuthForm = () => {
       <div className="dim-overlay"></div> {/* Dimmed overlay */}
       <div className="auth-container">
         <form className="auth-form" onSubmit={handleLogin}>
-          <h2>U.S WEST LOGIN</h2>
+          <div className='top'>
+            <img src='/images/logo4.png' className="pic" alt="Logo" />
+            <h2>LOGIN TO CONTINUE</h2>
+          </div>
+
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input 
@@ -57,6 +59,7 @@ const AuthForm = () => {
               required 
             />
           </div>
+          
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input 
@@ -67,9 +70,18 @@ const AuthForm = () => {
               required 
             />
           </div>
-          <button type="submit" className="auth-button">Login</button>
-         <Link to='/register'>
-         <p className="toggle-link">Don't have an account? Sign up</p></Link>
+
+          {/* Keep me signed in checkbox */}
+       
+
+          <button type="submit" className="auth-buttonn">Login</button>
+
+          <Link to='/register'>
+            <p className="toggle-link">Don't have an account? Sign up</p>
+          </Link>\
+          <Link to='/password/forgot'>
+            <p className="toggle-link mt-0">Forgot your password?</p>
+          </Link>
         </form>
       </div>
     </div>

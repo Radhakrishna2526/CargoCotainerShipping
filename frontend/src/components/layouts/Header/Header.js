@@ -53,6 +53,9 @@ const Header = () => {
       <li className="nav-item">
         <Link to="/partners" className="nav-link">PARTNERS WITH U.S WEST CARGO</Link>
       </li>
+      <li className="nav-item">
+        <Link target="_blank" to="http://localhost:3001/" className="nav-link">Prudent AI</Link>
+      </li>
     </ul>
 
         </div>
@@ -94,7 +97,7 @@ const Header = () => {
 
         {/* Logo */}
         <Link to="/"> {/* Using Link to navigate to home page when image is clicked */}
-          <img src='./images/logo4.png' className="img-fluid custom-logo" alt="Logo" />
+          <img src='/images/logo4.png' className="img-fluid custom-logo" alt="Logo" />
         </Link>
       </nav>
     </div>

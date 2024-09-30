@@ -35,5 +35,21 @@ namespace Infrastructure.Repositories
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
+
+        public async Task<User?> GetUserByResetTokenAsync(string resetToken)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.ResetPasswordToken == resetToken && u.ResetPasswordExpire > DateTime.Now);
+        }
+
+        public async Task SaveUserAsync(User user, bool validateBeforeSave)
+        {
+            if (validateBeforeSave)
+                _context.Update(user);
+            else
+                _context.Update(user);
+                //_context.UpdateWithoutValidation(user);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

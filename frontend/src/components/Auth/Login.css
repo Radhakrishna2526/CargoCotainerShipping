@@ -13,10 +13,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('/public/images/4.jpg') no-repeat center center fixed; /* Background image */
+  background: url('/public/images/15.jpg') no-repeat center center fixed; /* Background image */
   background-size: cover; /* Cover the entire page */
   z-index: 0; /* Place it behind other elements */
 }
+
 
 .dim-overlay {
   position: absolute; /* Positioning the overlay absolutely */
@@ -24,7 +25,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay for dimming */
+  background-color: rgba(0, 0, 0, 0.466); /* Semi-transparent black overlay for dimming */
   z-index: 1; /* Place it above the background image */
 }
 
@@ -33,11 +34,13 @@
   width: 100%;
   max-width: 500px;
   height: 500px;
-  background-color: rgba(255, 255, 255, 0.76); /* Slightly opaque background */
+  background-color: rgba(252, 251, 251, 0.897); /* Slightly opaque background */
   border-radius: 15px; /* Rounded corners for a softer look */
   padding: 40px; /* Increased padding for a more spacious feel */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); /* Enhanced shadow for more depth */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Enhanced shadow for more depth */
   z-index: 2; /* Ensure the container is on top of the overlay */
+  background: linear-gradient(to bottom, #b0b3b7 25%, rgba(252, 251, 251, 0.952) 5%);
+
 }
 
 .auth-form {
@@ -45,14 +48,16 @@
 }
 
 .auth-form h2 {
-  color: #2e2b2b; /* Darker color for better contrast */
-  font-size: 28px; /* Increased font size for the title */
+  color: #f7f2f2; /* Darker color for better contrast */
+  font-size: 21px; /* Increased font size for the title */
   margin-bottom: 20px;
   font-weight: bold; /* Bold font for better emphasis */
-  background-color: rgba(240, 169, 169, 0.76);
+  background-color: rgb(150, 11, 11);
   width: 250px;
-  border-radius: 5px;
-  margin-left: 20%;
+  border-radius: 10px;
+  margin-left: 5%;
+  padding: 8px;
+  margin-top: 20px;
 
 }
 
@@ -65,7 +70,7 @@ label {
   color: #2b2b2b; /* Darker label color for better visibility */
   font-size: 16px; /* Increased label size for better readability */
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 1px;
   font-weight:bold
 }
 
@@ -85,16 +90,24 @@ input:focus {
   background-color: rgba(255, 255, 255, 1); /* Fully opaque background on focus */
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Enhanced shadow on focus */
 }
-
-.auth-button {
-  width: 100%;
-  padding: 14px; /* Increased button padding for better touch targets */
-  background-color: #178d3e; /* Bootstrap primary color */
+.pic{
+  border-radius: 10%;
+  border: 5px solid rgba(245, 243, 243, 0.568);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  height: 90px;
+  
+  
+}
+.auth-buttonn {
+  width: 80%;
+  padding: 6px; /* Increased button padding for better touch targets */
+  background-color: #0c1f8a; /* Bootstrap primary color */
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius:20px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 19px;
+  font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
 }
 
@@ -124,4 +137,15 @@ input:focus {
     font-size: 14px;
     padding: 10px;
   }
+}
+.top {
+  display: flex; /* Use flexbox to arrange children side by side */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 50px; /* Add some space below the header */
+
+}
+
+.top {
+  margin-right: 15px; /* Space between the logo and the heading */
+  height: 50px; /* Adjust height as needed */
 }

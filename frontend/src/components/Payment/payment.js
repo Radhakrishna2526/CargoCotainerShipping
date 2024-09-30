@@ -7,35 +7,36 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import {removeContainerFromCart} from '../../actions/bookingActions'
 
-const PaymentForm = () => {
+const PaymentPage = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
+  const [cardHolderName, setCardHolderName] = useState('');
   const [errors, setErrors] = useState({});
 
   const { user, loading } = useSelector(state => state.auth)
   const { containerId, locationId, destinationId, availableFrom } = useSelector(state => state.containerSelected);
  
-
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   // Validate form fields
   const validateForm = () => {
     const newErrors = {};
-    
     if (!/^\d{16}$/.test(cardNumber)) {
-      newErrors.cardNumber = "Card number must be 16 digits";
+      newErrors.cardNumber = 'Card number must be 16 digits';
     }
-    
     if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
-      newErrors.expiryDate = "Expiry date must be in MM/YY format";
+      newErrors.expiryDate = 'Expiry date must be in MM/YY format';
     }
-    
     if (!/^\d{3,4}$/.test(cvv)) {
-      newErrors.cvv = "CVV must be 3 or 4 digits";
+      newErrors.cvv = 'CVV must be 3 or 4 digits';
     }
-    
+    if (!cardHolderName) {
+      newErrors.cardHolderName = 'Cardholder name is required';
+    }
     return newErrors;
   };
 
@@ -44,7 +45,7 @@ const PaymentForm = () => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
-      console.log('Form submitted:', { cardNumber, expiryDate, cvv });
+      console.log('Form submitted:', { cardNumber, expiryDate, cvv, cardHolderName });
       // Here you can integrate with a payment provider like Stripe or PayPal
     } else {
       setErrors(formErrors);
@@ -65,8 +66,8 @@ const PaymentForm = () => {
             
         });
         alert(`Container ${containerId} has been booked successfully!`);
-        dispatch(removeContainerFromCart());
         navigate('/');
+        dispatch(removeContainerFromCart());
     } catch (err) {
         alert(`Failed to book container ${containerId}. Please try again.`);
     }
@@ -83,59 +84,75 @@ useEffect(() => {
 
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto' }}>
-      <h2>Payment Form</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="payment-page-container">
+      <div className="payment-card">
+        <h2>Complete Your Payment</h2>
+        <form className="payment-form" onSubmit={handleSubmit}>
+          
+          {/* Cardholder Name */}
+          <div className="form-group">
+            <label htmlFor="cardHolderName">Cardholder Name</label>
+            <input
+              type="text"
+              id="cardHolderName"
+              name="cardHolderName"
+              value={cardHolderName}
+              onChange={(e) => setCardHolderName(e.target.value)}
+              placeholder="John Doe"
+            />
+            {errors.cardHolderName && <span className="errorr">{errors.cardHolderName}</span>}
+          </div>
 
-        {/* Card Number */}
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="cardNumber">Card Number</label>
-          <input
-            type="text"
-            id="cardNumber"
-            name="cardNumber"
-            maxLength="16"
-            value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, ''))}
-            placeholder="1234 1234 1234 1234"
-          />
-          {errors.cardNumber && <span style={{ color: 'red' }}>{errors.cardNumber}</span>}
-        </div>
+          {/* Card Number */}
+          <div className="form-group">
+            <label htmlFor="cardNumber">Card Number</label>
+            <input
+              type="text"
+              id="cardNumber"
+              name="cardNumber"
+              maxLength="16"
+              value={cardNumber}
+              onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, ''))}
+              placeholder="1234 1234 1234 1234"
+            />
+            {errors.cardNumber && <span className="errorr">{errors.cardNumber}</span>}
+          </div>
 
-        {/* Expiry Date */}
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="expiryDate">Expiry Date (MM/YY)</label>
-          <input
-            type="text"
-            id="expiryDate"
-            name="expiryDate"
-            value={expiryDate}
-            onChange={(e) => setExpiryDate(e.target.value)}
-            placeholder="MM/YY"
-            maxLength="5"
-          />
-          {errors.expiryDate && <span style={{ color: 'red' }}>{errors.expiryDate}</span>}
-        </div>
+          {/* Expiry Date */}
+          <div className="form-group">
+            <label htmlFor="expiryDate">Expiry Date (MM/YY)</label>
+            <input
+              type="text"
+              id="expiryDate"
+              name="expiryDate"
+              value={expiryDate}
+              onChange={(e) => setExpiryDate(e.target.value)}
+              placeholder="MM/YY"
+              maxLength="5"
+            />
+            {errors.expiryDate && <span className="errorr">{errors.expiryDate}</span>}
+          </div>
 
-        {/* CVV */}
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="cvv">CVV</label>
-          <input
-            type="text"
-            id="cvv"
-            name="cvv"
-            maxLength="4"
-            value={cvv}
-            onChange={(e) => setCvv(e.target.value.replace(/\D/g, ''))}
-            placeholder="123"
-          />
-          {errors.cvv && <span style={{ color: 'red' }}>{errors.cvv}</span>}
-        </div>
+          {/* CVV */}
+          <div className="form-group">
+            <label htmlFor="cvv">CVV</label>
+            <input
+              type="text"
+              id="cvv"
+              name="cvv"
+              maxLength="4"
+              value={cvv}
+              onChange={(e) => setCvv(e.target.value.replace(/\D/g, ''))}
+              placeholder="123"
+            />
+            {errors.cvv && <span className="errorr">{errors.cvv}</span>}
+          </div>
 
-        <button type="submit">Submit Payment</button>
-      </form>
+          <button type="submit" className="submit-btn">Submit Payment</button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default PaymentForm;
+export default PaymentPage;

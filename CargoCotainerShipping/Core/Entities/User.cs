@@ -84,10 +84,17 @@ namespace Core.Entities
             rng.GetBytes(randomBytes);
             var resetToken = BitConverter.ToString(randomBytes).Replace("-", "").ToLower();
 
-            ResetPasswordToken = System.Security.Cryptography.SHA256.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(resetToken)).ToString();
+            ResetPasswordToken = HashToken(resetToken);
             ResetPasswordExpire = DateTime.Now.AddMinutes(30);
 
             return resetToken;
+        }
+
+        private string HashToken(string token)
+        {
+            using var sha256 = System.Security.Cryptography.SHA256.Create();
+            var hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(token));
+            return BitConverter.ToString(hash).Replace("-", "").ToLower();
         }
     }
 }
