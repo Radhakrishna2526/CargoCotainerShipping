@@ -64,5 +64,18 @@ namespace CargoCotainerShipping.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("GetAllBookings")]
+        public async Task<ActionResult<List<BookingDetailsResponse>>> GetAllBookings()
+        {
+            try
+            {
+                var bookingDetails = await _bookingService.GetAllBookingsAsync();
+                return Ok(bookingDetails);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
