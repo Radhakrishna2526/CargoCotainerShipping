@@ -50,5 +50,19 @@ namespace CargoCotainerShipping.Controllers
             var respopnse = await _bookingService.GetBookingDetailsByBookingId(bookingId);
             return Ok(respopnse);
         }
+
+        [HttpGet("{bookingId}/price")]
+        public async Task<IActionResult> GetBookingPrice(int bookingId)
+        {
+            try
+            {
+                var price = await _bookingService.CalculateBookingPrice(bookingId);
+                return Ok(price);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
