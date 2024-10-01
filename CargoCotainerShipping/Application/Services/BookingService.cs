@@ -215,7 +215,55 @@ namespace Application.Services
 
             return price;
         }
+        public async Task<List<BookingDetailsResponse>> GetAllBookingsAsync()
+        {
+            // Here you can add any business logic if needed
+
+            try
+            {
+                // Fetch all bookings from the repository
+                var bookings = await _bookingRepository.GetAllBookings();
+
+                // Convert to detailed response
+                var bookingDetailsResponses = new List<BookingDetailsResponse>();
+
+                foreach (var booking in bookings)
+                {
+                    var deliveryDays = CalculateNoOfDaysToReach((int)booking.SourcePortId, (int)booking.DestinationPortId);
+
+                    // Calculate the starting date by subtracting delivery days from the delivery date
+                    var startingDate = booking.DeliveryDate.AddDays(-deliveryDays);
+
+                    // Create the booking detail object
+                    var bookingDetail = new BookingDetailsResponse
+                    {
+                        BookingId = booking.BookingId,
+                        UserId = (int)booking.UserId,
+                        UserName = booking.User.Name,
+                        ContainerType = booking.Container.Type,
+                        ContainerSize = booking.Container.Size,
+                        SourceportLocation = booking.SourcePort.Location,
+                        DestinationportLocation = booking.DestinationPort.Location,
+                        BookingDate = DateOnly.FromDateTime(booking.Created),
+                        DeliveryDate = booking.DeliveryDate,
+                        OutOfDelivery = startingDate
+                    };
+
+                    bookingDetailsResponses.Add(bookingDetail);
+                }
+
+                return bookingDetailsResponses;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (not shown here for brevity)
+                throw new Exception("Error at getting all bookings: " + ex.Message);
+            }
+        }
+
     }
 
-
 }
+
+
+
