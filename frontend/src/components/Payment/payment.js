@@ -5,7 +5,8 @@ import axios from 'axios'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import {removeContainerFromCart} from '../../actions/bookingActions'
+import { removeContainerFromCart } from '../../actions/bookingActions'
+import { createOrder } from '../../actions/orderActions';
 
 const PaymentPage = () => {
   const [cardNumber, setCardNumber] = useState('');
@@ -15,9 +16,9 @@ const PaymentPage = () => {
   const [errors, setErrors] = useState({});
 
   const { user, loading } = useSelector(state => state.auth)
-  const { containerId, locationId, destinationId, availableFrom } = useSelector(state => state.containerSelected);
- 
-  
+  const { containerId, locationId, destinationId, availableFrom, price } = useSelector(state => state.containerSelected);
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -55,32 +56,32 @@ const PaymentPage = () => {
 
   const handleBook = async () => {
     try {
-        // Make a POST request to book the container
-        await axios.post('https://localhost:7240/api/Booking/book', { 
-            
-                userId: user.id,
-                containerId,
-                sourcePortId: locationId,
-                destinationPortId: destinationId,
-                shippingDate: availableFrom
-            
-        });
-        alert(`Container ${containerId} has been booked successfully!`);
-        navigate('/');
-        dispatch(removeContainerFromCart());
+
+      dispatch( createOrder({
+        userId: user.id,
+        containerId,
+        sourcePortId: locationId,
+        destinationPortId: destinationId,
+        shippingDate: availableFrom,
+        price
+      }))
+
+      // alert(`Container ${containerId} has been booked successfully!`);
+      navigate('/payment/confirm');
+      // dispatch(removeContainerFromCart());
     } catch (err) {
-        alert(`Failed to book container ${containerId}. Please try again.`);
+      alert(`Failed to book container ${containerId}. Please try again.`);
     }
-};
+  };
 
-useEffect(() => {
+  useEffect(() => {
 
-  if(!containerId) {
-    alert('Login and select a container to access this page');
+    if (!containerId) {
+      alert('Login and select a container to access this page');
       navigate('/');
-  }
+    }
 
-}, [dispatch, containerId])
+  }, [dispatch, containerId])
 
 
   return (
@@ -88,7 +89,7 @@ useEffect(() => {
       <div className="payment-card">
         <h2>Complete Your Payment</h2>
         <form className="payment-form" onSubmit={handleSubmit}>
-          
+
           {/* Cardholder Name */}
           <div className="form-group">
             <label htmlFor="cardHolderName">Cardholder Name</label>

@@ -7,13 +7,16 @@ import {
 
 export const addContainerToCart = (containerId, locationId, destinationId, availableFrom) => async (dispatch) => {
     
+    const price = 100.0;
+
     dispatch({
         type: SELECT_CONTAINER,
         payload: {
             containerId,
             locationId, 
             destinationId, 
-            availableFrom
+            availableFrom,
+            price
         }
     })
 
