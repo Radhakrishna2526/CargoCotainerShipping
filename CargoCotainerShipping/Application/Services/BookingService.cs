@@ -193,22 +193,22 @@ namespace Application.Services
             
         }
 
-        public async Task<double> CalculateBookingPrice(int bookingId)
+        public async Task<double> CalculateBookingPrice(int containerId, int destinationId)
         {
             // Fetch the booking along with the related container and shipping company
-            var booking = await _bookingRepository.GetByBookingIdAsync(bookingId);
+            var container = await _containerRepository.GetByIdAsync(containerId);
 
-            if (booking == null || booking.Container == null || booking.Container.ShippingCompany == null)
+            if (container == null || container.ShippingCompany == null )
             {
                 throw new Exception("Invalid booking or related data is missing.");
             }
 
             // Get container size and shipping company rate per day
-            int containerSize = booking.Container.Size;  // For example, 20ft, 40ft
-            double rate = booking.Container?.ShippingCompany.RatePerDayPer10ftCont ?? 0;
+            int containerSize = container.Size;  // For example, 20ft, 40ft
+            double rate = container.ShippingCompany.RatePerDayPer10ftCont;
 
             // Calculate the number of days for the booking
-            var bookingDuration = (booking.DeliveryDate.ToDateTime(TimeOnly.MinValue) - booking.Created).Days;
+            var bookingDuration = CalculateNoOfDaysToReach(container.CurrentPortId,destinationId);
 
             // Calculate the price based on size and rate
             double price = containerSize * rate * bookingDuration ;

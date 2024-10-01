@@ -27,7 +27,10 @@ namespace Infrastructure.Repositories
         }
         public async Task<Container> GetByIdAsync(int id)
         {
-            return await _context.Containers.FindAsync(id);
+            return await _context.Containers
+                .Include(c => c.ShippingCompany)
+                .Include(c => c.CurrentPort)
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
         public async Task UpdateAsync(Container container)
         {

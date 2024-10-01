@@ -51,12 +51,12 @@ namespace CargoCotainerShipping.Controllers
             return Ok(respopnse);
         }
 
-        [HttpGet("{bookingId}/price")]
-        public async Task<IActionResult> GetBookingPrice(int bookingId)
+        [HttpGet("price")]
+        public async Task<IActionResult> GetBookingPrice([FromQuery] int containerId, [FromQuery] int destinationPortId)
         {
             try
             {
-                var price = await _bookingService.CalculateBookingPrice(bookingId);
+                var price = await _bookingService.CalculateBookingPrice(containerId, destinationPortId);
                 return Ok(price);
             }
             catch (Exception ex)
