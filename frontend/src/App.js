@@ -17,6 +17,7 @@ import BookedContainers from './components/Orders/Orders';
 import ForgotPassword from './components/Auth/ForgotPassword'
 import ResetPassword from './components/Auth/ResetPassword'
 import ConfirmationPage from './components/Payment/confirm';
+import ContainerAddAdmin from './components/admin/Container/ContainerAddAdmin';
 
  const routerr = createBrowserRouter([
    {
@@ -36,6 +37,9 @@ import ConfirmationPage from './components/Payment/confirm';
       {path:'orders',element:<BookedContainers />},
       {path:'password/forgot',element:<ForgotPassword />},
       {path:'password/reset/:token',element:<ResetPassword />},
+
+      {path:'admin/containers',element:<ContainerAddAdmin />},
+
       
     ],    
   },
