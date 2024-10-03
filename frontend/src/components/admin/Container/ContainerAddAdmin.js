@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { newContainer, clearErrors } from '../../../actions/containerActions';
-import { useNavigate } from 'react-router-dom';
-import { NEW_CONTAINER_RESET } from '../../../constants/containerConstants';
 import './ContainerAddAdmin.css'; // Import the CSS file for styling
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { newContainer, clearErrors } from '../../../actions/containerActions'
+import { useNavigate } from 'react-router-dom'
+import { NEW_CONTAINER_RESET } from '../../../constants/containerConstants';
 
 const ContainerAddAdmin = () => {
     const [size, setSize] = useState('');
     const [type, setType] = useState('');
     const [capacity, setCapacity] = useState('');
     const [sourcePort, setSourcePort] = useState('');
+    const [sourcePortId, setSourcePortId] = useState();
     const [companyName, setCompanyName] = useState('');
+    const [companyId, setCompanyId] = useState();
     const [availableFrom, setAvailableFrom] = useState('');
 
     const Ports = [
@@ -24,7 +26,7 @@ const ContainerAddAdmin = () => {
         'Mundra Port',
         'Kandla Port',
         'Vishakhapatnam Port'
-    ];
+    ]
 
     const ShippingCompanies = [
         'ABS Marine',
@@ -32,7 +34,7 @@ const ContainerAddAdmin = () => {
         'ONE Ocean Network Express',
         'OOCL',
         'Essar Shipping'
-    ];
+    ]
 
     const ContainerTypes = [
         'Dry containers',
@@ -40,36 +42,39 @@ const ContainerAddAdmin = () => {
         'Flat rack containers',
         'Open top containers',
         'Tank containers'
-    ];
+    ]
 
     const containerStandardSizes = [
         '20FT General',
         '20FT High Cube',
         '40FT General',
         '40FT High Cube'
-    ];
+    ]
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { error, success } = useSelector(state => state.newContainer);
+
+    const { loading, error, success } = useSelector(state => state.newContainer);
 
     useEffect(() => {
+
         if (error) {
-            alert.error(error); // Display error if exists
-            dispatch(clearErrors()); // Clear the error from state
+            alert.error(error);
+            dispatch(clearErrors())
         }
+
         if (success) {
-            navigate('/admin/container'); // Navigate to the container list
-            alert('Container created successfully'); // Success alert
-            dispatch({ type: NEW_CONTAINER_RESET }); // Reset the success state
+            navigate('/admin/container');
+            alert('Container created successfully');
+            dispatch({ type: NEW_CONTAINER_RESET })
         }
-    }, [dispatch, error, success, navigate]);
+    }, [dispatch, error, success])
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
 
-        // Create a container object with form data
-        const container = {
+        // You can add your API call here to submit the data
+        let container = {
             size,
             type,
             sourcePort,
@@ -77,102 +82,101 @@ const ContainerAddAdmin = () => {
             capacity,
             availableFrom
         };
-
-        // Dispatch the action to create a new container
+        
         dispatch(newContainer(container));
     };
+
+    const handleCompanyName = (e) => {
+        setCompanyName(e.target.value);
+        setCompanyId(e.target.selectedIndex);
+    }
+
+    const handlePortLocation = (e) => {
+        setSourcePort(e.target.value);
+        setSourcePortId(e.target.selectedIndex);
+    }
 
     return (
         <div className="add-container-form">
             <h1>Add Container</h1>
-            {error && <div className="errorMessage">{error}</div>}
-            {success && <div className="successMessage">{success}</div>}
+            {error && <div className="error">{error}</div>}
+            {success && <div className="success">{success}</div>}
             <form onSubmit={handleSubmit}>
-                <div className="formGroup">
-                    <label className="formLabel">Company Name:</label>
+                <div className="form-group">
+                    <label>Company Name:</label>
                     <select
                         value={companyName}
-                        onChange={(e) => setCompanyName(e.target.value)}
-                        className="formSelect"
-                        required
+                        onChange={handleCompanyName}
                     >
                         <option value="" disabled hidden>Select Your Company</option>
-                        {ShippingCompanies.map((company, index) => (
-                            <option key={index} value={company}>
-                                {company}
+                        {ShippingCompanies.map((ShippingCompany, index) => (
+                            <option key={index + 1} value={ShippingCompany}>
+                                {ShippingCompany}
                             </option>
                         ))}
                     </select>
                 </div>
-                <div className="formGroup">
-                    <label className="formLabel">Type:</label>
+                <div className="form-group">
+                    <label>Type:</label>
                     <select
                         value={type}
                         onChange={(e) => setType(e.target.value)}
-                        className="formSelect"
-                        required
                     >
                         <option value="" disabled hidden>Select Type of Container</option>
-                        {ContainerTypes.map((containerType, index) => (
-                            <option key={index} value={containerType}>
-                                {containerType}
+                        {ContainerTypes.map((ContainerType, index) => (
+                            <option key={index + 1} value={ContainerType}>
+                                {ContainerType}
                             </option>
                         ))}
                     </select>
                 </div>
-                <div className="formGroup">
-                    <label className="formLabel">Size:</label>
+                <div className="form-group">
+                    <label>Size:</label>
                     <select
                         value={size}
                         onChange={(e) => setSize(e.target.value)}
-                        className="formSelect"
-                        required
                     >
                         <option value="" disabled hidden>Select Size of Container</option>
                         {containerStandardSizes.map((containerStandardSize, index) => (
-                            <option key={index} value={containerStandardSize}>
+                            <option key={index + 1} value={containerStandardSize}>
                                 {containerStandardSize}
                             </option>
                         ))}
                     </select>
                 </div>
-                <div className="formGroup">
-                    <label className="formLabel">Source Port:</label>
+                <div className="form-group">
+                    <label>Source Port:</label>
                     <select
                         value={sourcePort}
-                        onChange={(e) => setSourcePort(e.target.value)}
-                        className="formSelect"
-                        required
+                        onChange={handlePortLocation}
                     >
                         <option value="" disabled hidden>Select Port Location</option>
                         {Ports.map((port, index) => (
-                            <option key={index} value={port}>
+                            <option key={index + 1} value={port}>
                                 {port}
                             </option>
                         ))}
                     </select>
                 </div>
-                <div className="formGroup">
-                    <label className="formLabel">Available For Booking:</label>
+                <div className="form-group">
+                    <label>Available For Booking:</label>
+
                     <input
                         type="date"
                         value={availableFrom}
                         onChange={(e) => setAvailableFrom(e.target.value)}
-                        className="formInput"
-                        required
                     />
                 </div>
-                <div className="formGroup">
-                    <label className="formLabel">Capacity:</label>
+                <div className="form-group">
+                    <label>Capacity:</label>
                     <input
                         type='number'
                         value={capacity}
                         onChange={(e) => setCapacity(e.target.value)}
-                        className="formInput"
                         required
                     />
                 </div>
-                <button type="submit" className="submitButton">Add Container</button>
+                <button type="submit" className='ac'>Add Container</button>
             </form>
         </div>
     );
