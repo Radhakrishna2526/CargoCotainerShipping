@@ -25,6 +25,22 @@ namespace Infrastructure.Repositories
                 .Where(c => c.CurrentPortId == portId && c.AvailableFrom <= availableFrom)
                 .ToListAsync();
         }
+
+        //Admin
+        public async Task<List<Container>> GetAllContainers()
+        {
+            return await _context.Containers
+                .ToListAsync();
+        }
+
+        //Admin
+        public async Task<Container> AddAsync(Container container)
+        {
+            var newContainer = _context.Containers.Add(container);
+            await _context.SaveChangesAsync();
+            return newContainer.Entity;
+        }
+
         public async Task<Container> GetByIdAsync(int id)
         {
             return await _context.Containers
