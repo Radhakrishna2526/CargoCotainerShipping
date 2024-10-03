@@ -21,21 +21,12 @@
     padding: 2rem; /* Padding around the form */
     background-color: rgba(249, 249, 249, 0.9); /* Light background color with transparency */
     border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
     position: relative; /* Position for absolute background */
     z-index: 1; /* Ensures the form is above the background */
 }
 
 /* Dimmed overlay */
-.overlay {
-    position: fixed; /* Fixed position for overlay */
-    top: 0; /* Align to top */
-    left: 0; /* Align to left */
-    right: 0; /* Align to right */
-    bottom: 0; /* Align to bottom */
-    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    z-index: 0; /* Below the form */
-}
 
 /* Title styling */
 .add-container-form h1 {
@@ -43,7 +34,18 @@
     margin-bottom: 1.5rem; /* Space below the title */
     color: #333; /* Dark text color */
 }
-
+select, input[type='date'], input[type='number'] {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside the input */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+select:focus, input[type='date']:focus, input[type='number']:focus {
+    border-color: #007BFF; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+}
 /* Error and success message styling */
 .errorMessage,
 .successMessage {
@@ -65,7 +67,14 @@
     font-weight: bold; /* Bold label */
     color: #555; /* Dark grey color for labels */
 }
-
+.add-container-form h1{
+    color: rgb(163, 16, 16);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    font-size: xx-large;
+    box-shadow: #333;
+    outline: 2px rgb(8, 35, 122);
+}
 /* Input and select styling */
 .formInput,
 .formSelect {
@@ -75,7 +84,10 @@
     border-radius: 4px; /* Rounded corners */
     font-size: 1rem; /* Font size */
 }
-
+.form-group label{
+    font-size: larger;
+    font-weight: 700;
+}
 /* Change border color on focus */
 .formInput:focus,
 .formSelect:focus {
@@ -84,7 +96,7 @@
 }
 
 /* Button styling */
-.submitButton {
+.ac {
     width: 100%; /* Full width for button */
     padding: 0.5rem; /* Padding inside button */
     background-color: #007bff; /* Blue background */
@@ -93,7 +105,8 @@
     border-radius: 4px; /* Rounded corners */
     font-size: 1.2rem; /* Larger font size */
     cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth background color transition */
+    transition: background-color 0.3s; 
+    margin-top: 20px;/* Smooth background color transition */
 }
 
 /* Button hover effect */

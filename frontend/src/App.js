@@ -19,6 +19,7 @@ import ResetPassword from './components/Auth/ResetPassword'
 import ConfirmationPage from './components/Payment/confirm';
 import ContainerAddAdmin from './components/admin/Container/ContainerAddAdmin';
 
+
  const routerr = createBrowserRouter([
    {
     path: '/',
@@ -39,6 +40,7 @@ import ContainerAddAdmin from './components/admin/Container/ContainerAddAdmin';
       {path:'password/reset/:token',element:<ResetPassword />},
 
       {path:'admin/containers',element:<ContainerAddAdmin />},
+
 
       
     ],    
