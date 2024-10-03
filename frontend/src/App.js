@@ -18,41 +18,47 @@ import ForgotPassword from './components/Auth/ForgotPassword'
 import ResetPassword from './components/Auth/ResetPassword'
 import ConfirmationPage from './components/Payment/confirm';
 import ContainerAddAdmin from './components/admin/Container/ContainerAddAdmin';
+import ProtectedRoute from './components/route/ProtectedRoute';
 
 
- const routerr = createBrowserRouter([
-   {
+const routerr = createBrowserRouter([
+  {
     path: '/',
     element: <Root />,  // Main layout or container (could include Navbars, etc.)
     children: [
       { path: 'partners', element: <Partner /> },  // Partners Page route
       { path: 'about', element: <AboutUs /> },  // About Us Page route
-      { path: 'contact', element: <ContactUs /> },  
-      {path:'/',element:<Home/>},
-     
+      { path: 'contact', element: <ContactUs /> },
+      { path: '/', element: <Home /> },
+
       { path: 'book-cargo', element: <ContainerAvailability /> },
-      {path:'payment',element:<PaymentForm/>},
-      {path:'payment/confirm',element:<ConfirmationPage/>},
-      {path:'login',element:<AuthForm />},
-      {path:'register',element:<RegisterForm />},
-      {path:'orders',element:<BookedContainers />},
-      {path:'password/forgot',element:<ForgotPassword />},
-      {path:'password/reset/:token',element:<ResetPassword />},
+      { path: 'payment', element: <PaymentForm /> },
+      { path: 'payment/confirm', element: <ConfirmationPage /> },
+      { path: 'login', element: <AuthForm /> },
+      { path: 'register', element: <RegisterForm /> },
+      { path: 'orders', element: <BookedContainers /> },
+      { path: 'password/forgot', element: <ForgotPassword /> },
+      { path: 'password/reset/:token', element: <ResetPassword /> },
 
-      {path:'admin/containers',element:<ContainerAddAdmin />},
+      {
+        path: 'admin/containers', element:
+          <ProtectedRoute>
+            <ContainerAddAdmin />
+          </ProtectedRoute>
+      },
 
 
-      
-    ],    
+
+    ],
   },
- ]);
+]);
 
 function App() {
   return (
     <div className="App">
-    {/* RouterProvider to manage the routing */}
-    <RouterProvider router={routerr} />
-  </div>
+      {/* RouterProvider to manage the routing */}
+      <RouterProvider router={routerr} />
+    </div>
 
 
   );
