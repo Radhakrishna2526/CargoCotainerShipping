@@ -18,8 +18,8 @@ export const newContainerReducer = (state = { container: {} }, action) =>{
         case NEW_CONTAINER_SUCCESS:
             return {
                 loading: false,
-                success: action.payload.success,
-                container: action.payload.product
+                success: true,
+                container: action.payload
             }
 
         case NEW_CONTAINER_FAIL:
