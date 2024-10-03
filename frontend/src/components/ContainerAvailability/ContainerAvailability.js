@@ -82,12 +82,9 @@ const ContainerAvailability = () => {
 
     return (
         <div className="container-availability">
-            <video autoPlay loop muted className="video-background">
-                <source src='/images/v4.mp4' type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+           
             <div className="overlay"></div>
-            <div className="form-container">
+            <div className="form-containery">
                 <h1>Check Container Availability</h1>
                 <select
                     value={location}
