@@ -7,6 +7,7 @@ import { NEW_CONTAINER_RESET } from '../../../constants/containerConstants';
 
 const ContainerAddAdmin = () => {
     const [size, setSize] = useState('');
+    const [sizeQuantity, setSizeQuantity] = useState();
     const [type, setType] = useState('');
     const [capacity, setCapacity] = useState('');
     const [sourcePort, setSourcePort] = useState('');
@@ -64,7 +65,7 @@ const ContainerAddAdmin = () => {
         }
 
         if (success) {
-            navigate('/admin/container');
+            navigate('/');
             alert('Container created successfully');
             dispatch({ type: NEW_CONTAINER_RESET })
         }
@@ -75,10 +76,10 @@ const ContainerAddAdmin = () => {
 
         // You can add your API call here to submit the data
         let container = {
-            size,
+            size : 40,
             type,
-            sourcePort,
-            companyName,
+            currentPortId : sourcePortId,
+            shippingCompanyId : companyId,
             capacity,
             availableFrom
         };

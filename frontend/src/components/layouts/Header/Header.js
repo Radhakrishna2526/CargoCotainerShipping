@@ -74,7 +74,7 @@ const Header = () => {
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {user && user.role === 'admin' && (
                 <li>
-                  <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                  <Link className="dropdown-item" to="/admin/containers">Add Container</Link>
                 </li>
               )}
               <li>

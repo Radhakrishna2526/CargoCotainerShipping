@@ -19,11 +19,8 @@ export const newContainer = (containerData) => async(dispatch) => {
             }
         }
 
-        // const { data } = await axios.post(`/api/v1/admin/product/new`, productData, config)
-        const  data = {
-            success : 'true'
-        }
-
+        const { data } = await axios.post(`https://localhost:7240/api/Containers/admin/newContainer`, containerData, config)
+        
         dispatch({
             type: NEW_CONTAINER_SUCCESS,
             payload: data
