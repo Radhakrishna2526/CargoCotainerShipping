@@ -19,6 +19,7 @@ import ResetPassword from './components/Auth/ResetPassword'
 import ConfirmationPage from './components/Payment/confirm';
 import ContainerAddAdmin from './components/admin/Container/ContainerAddAdmin';
 import ProtectedRoute from './components/route/ProtectedRoute';
+import AllContainers from './components/admin/Container/AllContainers';
 
 
 const routerr = createBrowserRouter([
@@ -47,6 +48,12 @@ const routerr = createBrowserRouter([
           </ProtectedRoute>
       },
 
+      {
+        path: 'admin/allcontainers', element:
+          <ProtectedRoute>
+            <AllContainers />
+          </ProtectedRoute>
+      },
 
 
     ],

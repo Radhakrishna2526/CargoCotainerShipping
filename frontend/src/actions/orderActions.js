@@ -23,11 +23,11 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
         const { data } = await axios.post('https://localhost:7240/api/Booking/book', order, config)
 
-        const price = 100.0;
+        //const price = await axios.get(`https://localhost:7240/api/Booking/price?containerId=${order.}&destinationPortId=3`);
 
         dispatch({
             type: CREATE_ORDER_SUCCESS,
-            payload: {...data, price}
+            payload: data
         })
         
     } catch (error) {

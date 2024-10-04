@@ -58,8 +58,7 @@ const PaymentPage = () => {
         containerId,
         sourcePortId: locationId,
         destinationPortId: destinationId,
-        shippingDate: availableFrom,
-        price
+        shippingDate: availableFrom
       }));
 
       navigate('/payment/confirm');
@@ -89,9 +88,9 @@ const PaymentPage = () => {
               {/* Display Cost and Proceed Button */}
               <h2>TOTAL COST OF YOUR CONTAINERS BOOKED</h2>
             <div className="cost-display">
-              <p><strong>Container ID:</strong> {containerId}</p>
-              <p><strong>Source Port ID:</strong> {locationId}</p>
-              <p><strong>Destination Port ID:</strong> {destinationId}</p>
+              <p><strong>Container Number:</strong> {containerId}</p>
+              {/* <p><strong>Source Port ID:</strong> {locationId}</p>
+              <p><strong>Destination Port ID:</strong> {destinationId}</p> */}
               <p><strong>Available From:</strong> {availableFrom}</p>
               <p><strong>Total Cost:</strong> ${price}</p>
             </div>
@@ -113,7 +112,7 @@ const PaymentPage = () => {
                   name="cardHolderName"
                   value={cardHolderName}
                   onChange={(e) => setCardHolderName(e.target.value)}
-                  placeholder="eg:John Doe"
+                 
                 />
                 {errors.cardHolderName && <span className="errorr">{errors.cardHolderName}</span>}
               </div>
@@ -127,8 +126,9 @@ const PaymentPage = () => {
                   name="cardNumber"
                   maxLength="16"
                   value={cardNumber}
+                  placeholder='1234-1234-1234-1234'
                   onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, ''))}
-                  placeholder="16 digit number"
+                  
                 />
                 {errors.cardNumber && <span className="errorr">{errors.cardNumber}</span>}
               </div>
@@ -142,7 +142,7 @@ const PaymentPage = () => {
                   name="expiryDate"
                   value={expiryDate}
                   onChange={(e) => setExpiryDate(e.target.value)}
-                  placeholder="MM/YY"
+                  
                   maxLength="5"
                 />
                 {errors.expiryDate && <span className="errorr">{errors.expiryDate}</span>}
@@ -158,7 +158,7 @@ const PaymentPage = () => {
                   maxLength="4"
                   value={cvv}
                   onChange={(e) => setCvv(e.target.value.replace(/\D/g, ''))}
-                  placeholder="123"
+                 
                 />
                 {errors.cvv && <span className="errorr">{errors.cvv}</span>}
               </div>

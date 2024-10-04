@@ -23,6 +23,8 @@ namespace Infrastructure.Repositories
         {
             return await _context.Containers
                 .Where(c => c.CurrentPortId == portId && c.AvailableFrom <= availableFrom)
+                .Include(c => c.ShippingCompany)
+                .Include(c => c.CurrentPort)
                 .ToListAsync();
         }
 
@@ -30,6 +32,8 @@ namespace Infrastructure.Repositories
         public async Task<List<Container>> GetAllContainers()
         {
             return await _context.Containers
+                .Include(c => c.ShippingCompany)
+                .Include(c => c.CurrentPort)
                 .ToListAsync();
         }
 

@@ -54,7 +54,7 @@ const Header = () => {
               <Link to="/partners" className="nav-link">PARTNERS WITH U.S WEST CARGO</Link>
             </li>
             <li className="nav-item">
-              <Link target="_blank" to="http://localhost:3001/" className="nav-link">Prudent AI</Link>
+              <Link target="_blank" to="http://localhost:3002/" className="nav-link">Prudent AI</Link>
             </li>
           </ul>
 
@@ -73,16 +73,22 @@ const Header = () => {
 
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {user && user.role === 'admin' && (
-                <li>
-                  <Link className="dropdown-item" to="/admin/containers">Add Container</Link>
-                </li>
+                <>
+                  <li>
+                    <Link className="dropdown-item" to="/admin/containers">Add Container</Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/admin/allcontainers">View All Containers</Link>
+                  </li>
+                </>
+
               )}
               <li>
                 <Link className="dropdown-item" to="/orders">Orders</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link className="dropdown-item" to="/me">Profile</Link>
-              </li>
+              </li> */}
               <li>
                 <button className="dropdown-item text-danger" onClick={logoutHandler}>
                   Logout

@@ -135,7 +135,7 @@ const ContainerAvailability = () => {
                                     <td>{container.id}</td>
                                     <td>{container.type}</td>
                                     <td>{container.size}</td>
-                                    <td>{Ports[container.id-1]}</td>
+                                    <td>{Ports[container.currentPortId-1]}</td>
                                     <td>{container.availableFrom}</td>
                                     <td>
                                         <button onClick={(e) => handleBook(container.id, locationId, destinationId, availableFrom)}>
@@ -153,22 +153,3 @@ const ContainerAvailability = () => {
 };
 
 export default ContainerAvailability;
-
-
-// const handleBook = async (containerId, locationId, destinationId, availableFrom) => {
-//     try {
-//         // Make a POST request to book the container
-//         await axios.post('https://localhost:7240/api/Booking/book', { 
-            
-//                 userId: 1,
-//                 containerId,
-//                 sourcePortId: locationId,
-//                 destinationPortId: destinationId,
-//                 shippingDate: availableFrom
-            
-//         });
-//         alert(`Container ${containerId} has been booked successfully!`);
-//     } catch (err) {
-//         alert(`Failed to book container ${containerId}. Please try again.`);
-//     }
-// };

@@ -57,7 +57,7 @@ namespace CargoCotainerShipping.Controllers
             try
             {
                 var price = await _bookingService.CalculateBookingPrice(containerId, destinationPortId);
-                return Ok(price);
+                return Ok(new { price });
             }
             catch (Exception ex)
             {

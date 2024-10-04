@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
     SELECT_CONTAINER,
     REMOVE_CONTAINER,
@@ -7,8 +9,8 @@ import {
 
 export const addContainerToCart = (containerId, locationId, destinationId, availableFrom) => async (dispatch) => {
     
-    const price = 100.0;
-
+    const { data } = await axios.get(`https://localhost:7240/api/Booking/price?containerId=${containerId}&destinationPortId=${destinationId}`);
+    console.log(data.price);
     dispatch({
         type: SELECT_CONTAINER,
         payload: {
@@ -16,7 +18,7 @@ export const addContainerToCart = (containerId, locationId, destinationId, avail
             locationId, 
             destinationId, 
             availableFrom,
-            price
+            price : data.price
         }
     })
 
