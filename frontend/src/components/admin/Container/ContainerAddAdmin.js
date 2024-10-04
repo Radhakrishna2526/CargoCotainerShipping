@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { newContainer, clearErrors } from '../../../actions/containerActions'
 import { useNavigate } from 'react-router-dom'
 import { NEW_CONTAINER_RESET } from '../../../constants/containerConstants';
+import { allPorts } from '../../../actions/portActions';
 
 const ContainerAddAdmin = () => {
     const [size, setSize] = useState('');
@@ -15,6 +16,8 @@ const ContainerAddAdmin = () => {
     const [companyName, setCompanyName] = useState('');
     const [companyId, setCompanyId] = useState();
     const [availableFrom, setAvailableFrom] = useState('');
+
+    const { ports = [] } = useSelector(state => state.allPorts);
 
     const Ports = [
         'Nhava Sheva',
@@ -58,6 +61,8 @@ const ContainerAddAdmin = () => {
     const { loading, error, success } = useSelector(state => state.newContainer);
 
     useEffect(() => {
+
+        dispatch(allPorts());
 
         if (error) {
             alert.error(error);

@@ -8,6 +8,7 @@ import { authReducer, forgotPasswordReducer
 import { bookingReducer } from './reducers/bookingReducers';
 import { myOrdersReducer, newOrderReducer } from './reducers/orderReducers';
 import { allContainerReducer, newContainerReducer } from './reducers/containerReducers';
+import { allPortsReducer } from './reducers/portReducers';
 
 
 // Combine all reducers
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     containerSelected: bookingReducer,
     myOrders: myOrdersReducer,
     allContainers: allContainerReducer,
+    allPorts: allPortsReducer,
     forgotPassword: forgotPasswordReducer
 });
 

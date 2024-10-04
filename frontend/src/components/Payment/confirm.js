@@ -15,6 +15,27 @@ const ConfirmationPage = () => {
     const type = 'Gas Container';
     const size = 20;
 
+    const Ports = [
+        'Nhava Sheva',
+        'Mumbai Port',
+        'Chennai Port',
+        'Ennore Port',
+        'Kolkata Port',
+        'Haldia Port',
+        'Cochin Port',
+        'Mundra Port',
+        'Kandla Port',
+        'Vishakhapatnam Port'
+    ]
+    
+    const ShippingCompanies = [
+        'ABS Marine',
+        'Evergreen Line',
+        'ONE Ocean Network Express',
+        'OOCL',
+        'Essar Shipping'
+    ]
+
     return (
         <div className="confirmation-page">
             <div className="confirmation-container">
@@ -34,11 +55,11 @@ const ConfirmationPage = () => {
                     </div>
                     <div className="detail-item">
                         <h2>Source Port</h2>
-                        <p>{locationId}</p>
+                        <p>{Ports[locationId-1]}</p>
                     </div>
                     <div className="detail-item">
                         <h2>Destination Port</h2>
-                        <p>{destinationId}</p>
+                        <p>{Ports[destinationId-1]}</p>
                     </div>
                     <div className="detail-item">
                         <h2>Available From</h2>

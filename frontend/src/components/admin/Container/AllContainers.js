@@ -4,6 +4,7 @@ import './AllContainers.css'; // Import the CSS file
 import { useDispatch, useSelector } from 'react-redux'
 import { Table } from 'react-bootstrap';
 import { clearErrors, allContainer } from '../../../actions/containerActions';
+import { allPorts } from '../../../actions/portActions';
 
 const AllContainers = () => {
 
@@ -11,9 +12,11 @@ const AllContainers = () => {
 
     const { user } = useSelector(state => state.auth)
     const { loading, error, containers = [] } = useSelector(state => state.allContainers);
+    const { ports = [] } = useSelector(state => state.allPorts);
 
     useEffect(() => {
         dispatch(allContainer());
+        dispatch(allPorts());
 
         if (error) {
             // alert.error(error);

@@ -19,6 +19,28 @@ const PaymentPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  
+  const Ports = [
+    'Nhava Sheva',
+    'Mumbai Port',
+    'Chennai Port',
+    'Ennore Port',
+    'Kolkata Port',
+    'Haldia Port',
+    'Cochin Port',
+    'Mundra Port',
+    'Kandla Port',
+    'Vishakhapatnam Port'
+]
+
+const ShippingCompanies = [
+    'ABS Marine',
+    'Evergreen Line',
+    'ONE Ocean Network Express',
+    'OOCL',
+    'Essar Shipping'
+]
+
   // Validate form fields
   const validateForm = () => {
     const newErrors = {};
@@ -89,9 +111,9 @@ const PaymentPage = () => {
               <h2>TOTAL COST OF YOUR CONTAINERS BOOKED</h2>
             <div className="cost-display">
               <p><strong>Container Number:</strong> {containerId}</p>
-              {/* <p><strong>Source Port ID:</strong> {locationId}</p>
-              <p><strong>Destination Port ID:</strong> {destinationId}</p> */}
-              <p><strong>Available From:</strong> {availableFrom}</p>
+              <p><strong>Source Port :</strong> {Ports[locationId-1]}</p>
+              <p><strong>Destination Port:</strong> {Ports[destinationId]}</p>
+              <p><strong>Shipping date:</strong> {availableFrom}</p>
               <p><strong>Total Cost:</strong> ${price}</p>
             </div>
             <button className="proceed-btn" onClick={handleProceedToPayment}>Proceed to Payment</button>
