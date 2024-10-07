@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #093b81; /* Dark blue-gray background */
+  background-color: #0a2d5f; /* Dark blue-gray background */
   padding: 0.6rem 2rem; /* Add padding for better spacing */
   box-shadow: 0 4px 8px rgba(25, 28, 231, 0.1); /* Light shadow for depth */
   display: flex; /* Enable Flexbox for the navbar */
@@ -15,11 +15,45 @@
 
 /* Logo styling */
 .navbar-logo img {
-  width: 100px; /* Adjust this value to make the logo bigger */
+  width: 60px; /* Adjust this value to make the logo bigger */
   height: auto; /* Maintain aspect ratio */
   border-radius: 50%; /* Round corners for a circular logo */
   border: 3px solid #9b0c1f; /* Dark red border around the logo */
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
+}
+
+/* Header.css */
+
+.navbar .dropdown button {
+  font-size: 1.25rem; /* Increase font size */
+  color: white; /* Adjust color if needed */
+  margin-right: 30px;
+}
+
+.navbar .dropdown button .fa-user-circle {
+  font-size: 1.5rem; /* Increase icon size */
+  margin-right: 0.5rem; /* Add space between icon and name */
+}
+
+.navbar .dropdown-menu {
+  min-width: 200px; /* Set a minimum width for the dropdown */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.navbar .dropdown-menu:hover {
+  background-color: rgb(241, 241, 241); /* Change background color to red on hover */
+}
+
+/* Dropdown Item Styles */
+.navbar .dropdown-menu .dropdown-item {
+  font-size: 1.1rem; /* Set default font size for dropdown items */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Change background color on hover for dropdown items */
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #c72a2a; /* A darker red for better contrast */
+  color: white; /* Change text color to white on hover */
 }
 
 .navbar-nav {

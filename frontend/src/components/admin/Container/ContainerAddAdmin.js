@@ -164,18 +164,18 @@ const ContainerAddAdmin = () => {
                         ))}
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="form-groupp">
                     <label>Available For Booking:</label>
 
-                    <input
+                    <input className='tt'
                         type="date"
                         value={availableFrom}
                         onChange={(e) => setAvailableFrom(e.target.value)}
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-groupp">
                     <label>Capacity:</label>
-                    <input
+                    <input className='tt'
                         type='number'
                         value={capacity}
                         onChange={(e) => setCapacity(e.target.value)}

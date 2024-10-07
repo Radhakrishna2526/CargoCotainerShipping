@@ -133,7 +133,7 @@
     font-size: 26px; /* Increase cost font size */
     font-weight: bold;
     color: #013492;
-    background-color: #ffff00; /* Highlight cost with yellow background */
+    background-color:none; /* Highlight cost with yellow background */
     padding: 10px;
     border-radius: 5px;
     display: inline-block;

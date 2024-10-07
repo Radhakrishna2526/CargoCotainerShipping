@@ -19,32 +19,11 @@ const PaymentPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  
-  const Ports = [
-    'Nhava Sheva',
-    'Mumbai Port',
-    'Chennai Port',
-    'Ennore Port',
-    'Kolkata Port',
-    'Haldia Port',
-    'Cochin Port',
-    'Mundra Port',
-    'Kandla Port',
-    'Vishakhapatnam Port'
-]
-
-const ShippingCompanies = [
-    'ABS Marine',
-    'Evergreen Line',
-    'ONE Ocean Network Express',
-    'OOCL',
-    'Essar Shipping'
-]
-
   // Validate form fields
   const validateForm = () => {
     const newErrors = {};
-    if (!/^\d{16}$/.test(cardNumber)) {
+    const unformattedCardNumber = cardNumber.replace(/\s/g, ''); // remove spaces for validation
+    if (!/^\d{16}$/.test(unformattedCardNumber)) {
       newErrors.cardNumber = 'Card number must be 16 digits';
     }
     if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
@@ -58,7 +37,6 @@ const ShippingCompanies = [
     }
     return newErrors;
   };
-
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,9 +89,9 @@ const ShippingCompanies = [
               <h2>TOTAL COST OF YOUR CONTAINERS BOOKED</h2>
             <div className="cost-display">
               <p><strong>Container Number:</strong> {containerId}</p>
-              <p><strong>Source Port :</strong> {Ports[locationId-1]}</p>
-              <p><strong>Destination Port:</strong> {Ports[destinationId]}</p>
-              <p><strong>Shipping date:</strong> {availableFrom}</p>
+              {/* <p><strong>Source Port ID:</strong> {locationId}</p>
+              <p><strong>Destination Port ID:</strong> {destinationId}</p> */}
+              <p><strong>Available From:</strong> {availableFrom}</p>
               <p><strong>Total Cost:</strong> ${price}</p>
             </div>
             <button className="proceed-btn" onClick={handleProceedToPayment}>Proceed to Payment</button>
@@ -141,20 +119,22 @@ const ShippingCompanies = [
 
               {/* Card Number */}
               <div className="form-group">
-                <label htmlFor="cardNumber">Card Number</label>
-                <input
-                  type="text"
-                  id="cardNumber"
-                  name="cardNumber"
-                  maxLength="16"
-                  value={cardNumber}
-                  placeholder='1234-1234-1234-1234'
-                  onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, ''))}
-                  
-                />
-                {errors.cardNumber && <span className="errorr">{errors.cardNumber}</span>}
-              </div>
-
+  <label htmlFor="cardNumber">Card Number</label>
+  <input
+    type="text"
+    id="cardNumber"
+    name="cardNumber"
+    value={cardNumber}
+    placeholder="1234 1234 1234 1234"
+    maxLength="19" // 16 digits + 3 spaces
+    onChange={(e) => {
+      const rawValue = e.target.value.replace(/\D/g, ''); // Remove non-digit characters
+      const formattedValue = rawValue.replace(/(\d{4})(?=\d)/g, '$1 '); // Add space after every 4 digits
+      setCardNumber(formattedValue);
+    }}
+  />
+  {errors.cardNumber && <span className="errorr">{errors.cardNumber}</span>}
+</div>
               {/* Expiry Date */}
               <div className="form-group">
                 <label htmlFor="expiryDate">Expiry Date (MM/YY)</label>
