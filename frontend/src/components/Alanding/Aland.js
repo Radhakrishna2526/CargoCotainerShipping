@@ -84,14 +84,16 @@ const LandingPage = () => {
                 </video>
                 <div className="video-overlay"></div>
                 <div className="hero-text">
-                    <p className='all'>All-in-one Container Shipping Solution</p>
+                    {/* <p className='all'>All-in-one Container Shipping Solution</p> */}
                     <h1>Book Or Rent a Container...</h1>
-                    <p className='all'>Our goal is to make booking a shipping container online as easy as it is to book a hotel online. We aim to provide the best possible customer service for our customers while also making it easy for container owners to sell their containers when they are no longer needed.</p>
-                  <Link to='/allContainers'>
-                  <button className='est'>Get a Free Estimate</button></Link>
+                    <p className='all'>Our goal is to make booking a shipping container online . while also making it easy for container owners to sell their containers when they are no longer needed.</p>
+                  <Link to='/book-cargo'>
+                  <button className='est'>Book Your Container</button></Link>
                 </div>
           </section>
-
+            <div className='cs'>
+                <h1 > Containers Section </h1>
+            </div>
             {/* Container Section */}
             <section className="container-section">
              
