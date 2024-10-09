@@ -83,5 +83,45 @@ namespace CargoCotainerShipping.Controllers
                 user
             });
         }
+
+        //userchanges
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest userRequest)
+        {
+            try
+            {
+                var result = await _userService.UpdateUser(userRequest.Id, userRequest.Name, userRequest.Email, userRequest.PhoneNo);
+                if (result != null)
+                    return Ok(result);
+                else
+                    return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var result = await _userService.GetAllUsers();
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
+    
 }
