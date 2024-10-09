@@ -46,7 +46,7 @@ const AuthForm = () => {
         <form className="auth-form" onSubmit={handleLogin}>
           <div className='top'>
             <img src='/images/logo4.png' className="pic" alt="Logo" />
-            <h2>LOGIN TO CONTINUE</h2>
+            <h2>Login</h2>
           </div>
 
           <div className="form-group">
@@ -78,7 +78,7 @@ const AuthForm = () => {
 
           <Link to='/register'>
             <p className="toggle-link">Don't have an account? Sign up</p>
-          </Link>\
+          </Link>
           <Link to='/password/forgot'>
             <p className="toggle-link mt-0">Forgot your password?</p>
           </Link>

@@ -1,0 +1,358 @@
+/* LandingPage.css */
+
+/* Reset basic margins */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    color: white;
+    text-align: center;
+    
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Style for the dimming overlay */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% transparent black overlay */
+    z-index: -1; /* Below the content but above the video */
+}
+
+.hero-text {
+    z-index: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    text-align:left;
+    width: 700px;
+    margin-top: 30%;
+    margin-left: 60%;
+    margin-top: 10%;
+}
+
+.hero-text h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+.est {
+    background-color: rgb(18, 89, 182);
+    border-radius: 20px;
+    padding: 8px;
+    font-size: medium;
+    color: rgb(250, 245, 245);
+}
+    /* border: 2px solid white;
+} */
+.cs h1{
+    color: rgb(172, 24, 24);
+ font-weight: bolder;
+    width: 400px;
+    margin-left: 40%;
+    margin-top: 15px;
+    font-size: 40px;
+    align-items: center;
+    text-align: center;
+}
+.container-section {
+    padding:  0 10px;
+   
+    width: auto;/* Add some padding */
+    /* border: 2px solid rgb(118, 86, 204); */
+    max-width: 1200px;
+}
+
+.container-list {
+    display: flex; /* Use flexbox to arrange items side by side */
+     /* Allow items to wrap to the next line if there's not enough space */
+    /* Add some padding around the container section */
+    /* border:  2px solid rgb(19, 194, 77); */
+}
+
+.container-item {
+    flex: 0 0 auto; /* Prevent shrinking and allow it to be a fixed width */
+    width: 210px;
+    height: 00px; /* Set a fixed width for each container item */
+    margin-right: 20px; /* Add some margin to the right for spacing */
+    text-align: center; 
+    border:2px solid rgb(221, 20, 20)Center text within the item
+}
+.d{
+    color: #000000;
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.container-item p{
+    color: aqua;
+}
+.container-image {
+    width: 100%; /* Full width for images */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+.size-heading {
+    font-weight: bold; /* Make size heading bold */
+    margin: 10px 0; /* Space out the size heading */
+}
+
+
+.container-item:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+.container-item .size-heading {
+    font-size: 1.75rem; /* Heading font size */
+    font-weight: bold; /* Bold font */
+    margin-bottom: 10px;
+    color: #000000; /* Optional: Add a color for the size heading */
+}
+
+.container-image {
+    width: 100%; /* Make the image responsive to the container width */
+    height: 200px; /* Maintain the height for a larger image */
+    max-width: 300px; /* Set a maximum width for the image */
+    object-fit: cover; /* Maintain aspect ratio while covering the box */
+    border-radius: 4px; /* Rounded corners for images */
+    margin-bottom: 10px; /* Add some space below the image */
+}
+
+.container-item p {
+    font-size: 1.1rem; /* Slightly increase description font size */
+    color: #555;
+}
+.container-section {
+    margin-bottom: 50%; /* Adjust the spacing as needed */
+}
+
+
+
+/* Carousel Section */
+.carousel-section {
+    padding: 80px 20px;
+    background-image: url(/public/images/12.jpg);
+    background-size: cover; /* Ensures the background image covers the section */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+   /* Apply blur effect */
+    z-index: -1;
+}
+
+
+.carousel-section h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: rgb(33, 25, 153);
+}
+
+.carousel-item {
+    background-color: white;
+    padding: 20px; /* Adjust padding for carousel items */
+    border-radius: 8px;
+    color: #333;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0 10px; /* Add margin for spacing */
+}
+.carousel-content {
+    position: relative;
+    z-index: 2; /* This ensures the carousel content is above the blur */
+    color: white;
+}
+
+.carousel-image {
+    max-width: 100%; /* Ensures the image fits within the item */
+    height: auto; /* Maintain aspect ratio */
+}
+.carousel-dots, .custom-left-arrow, .custom-right-arrow {
+    z-index: 3; /* Ensure they appear above the blurred background */
+}
+/* Footer Section */
+
+/* Footer Section */
+.footer {
+    background-color: #091e4d;
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Top section with three columns */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* Footer columns */
+.footer-column {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.footer-column h4 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer-column ul li a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Marquee Section */
+.footer-marquee {
+    background-color: #7c1010;
+    padding: 15px;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.footer-marquee marquee {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+/* Bottom section with social links */
+.footer-bottom {
+    border-top: 1px solid #555;
+    padding-top: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #ccc;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+.all{
+    color: white;
+    font-size: small;
+    font-size: 18px;
+    font-weight: 300;
+  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}/* Adjustments for container section */
+/* Adjustments for container section */
+.container-section {
+    padding: 20px; /* Add padding for overall section */
+    margin: 0 auto; /* Center the section */
+    max-width: 1200px; /* Limit the width for the section */
+}
+
+.container-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 20px; /* Space between the cards */
+    padding: 0px;
+    justify-items: center; 
+    width: 100%;/* Center the content */
+}
+
+.container-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    max-width: 300px; /* Control max width of each card */
+    width: 100%; /* Full width for grid items */
+    height: auto; /* Auto height for responsiveness */
+}
+
+.container-item:hover {
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.container-image {
+    width: 100%; /* Full width for images */
+    height: 150px; /* Set a fixed height for images */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 4px; /* Rounded corners */
+    margin-bottom: 15px; /* Space below the image */
+}
+
+.size-heading {
+    font-size: 1.2rem; /* Smaller font size for the heading */
+    margin-bottom: 10px;
+    color: #333; /* Darker text */
+}
+
+.container-item p {
+    font-size: 1rem; /* Adjust font size */
+    color: #555;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1024px) {
+    .container-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .container-list {
+        grid-template-columns: repeat(1, 1fr); /* 1 item per row for small screens */
+    }
+}

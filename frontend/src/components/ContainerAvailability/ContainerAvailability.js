@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, createSearchParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-
-import {addContainerToCart} from '../../actions/bookingActions'
+import { useDispatch } from 'react-redux';
+import { addContainerToCart } from '../../actions/bookingActions';
 import './ContainerAvailability.css'; // Import the CSS file
 
 const ContainerAvailability = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -17,7 +15,6 @@ const ContainerAvailability = () => {
     const [destinationId, setDestinationId] = useState(0);
     const [availableFrom, setAvailableFrom] = useState('');
     const [containers, setContainers] = useState([]);
-    // const [selectedContainer, setSelectedContainer] = useState();
     const [error, setError] = useState('');
 
     const Ports = [
@@ -31,7 +28,7 @@ const ContainerAvailability = () => {
         'Mundra Port',
         'Kandla Port',
         'Vishakhapatnam Port'
-    ]
+    ];
 
     // Format the date as YYYY-MM-DD for the backend
     const formatDate = (date) => {
@@ -39,6 +36,22 @@ const ContainerAvailability = () => {
     };
 
     const handleSearch = async () => {
+        // Check if the selected ports are the same
+        if (!location || !destination) {
+            alert("Please enter the details.");
+            return; // Stop the function if any port is missing
+        }
+        if (location === destination) {
+            alert("Both ports are the same. Please select different ports.");
+            return; // Stop the function if the ports are the same
+        }
+        if (!location || !destination) {
+            alert("Please select both ports.");
+            return; // Stop the function if any port is missing
+        } if (!availableFrom) {
+            alert("Please enter a date.");
+            return; // Stop the function if the date is missing
+        }
         try {
             // Format date for the API
             const formattedDate = availableFrom ? formatDate(availableFrom) : '';
@@ -46,7 +59,7 @@ const ContainerAvailability = () => {
             // Make GET request with query parameters
             const response = await axios.get('https://localhost:7240/api/Containers/available', {
                 params: {
-                    portId:locationId, // Pass as query param
+                    portId: locationId, // Pass as query param
                     availableFrom: formattedDate // Pass the formatted date
                 }
             });
@@ -62,55 +75,53 @@ const ContainerAvailability = () => {
     const handlePortLocation = (e) => {
         setLocation(e.target.value);
         setLocationId(e.target.selectedIndex);
-    }
+    };
 
     const handlePortDestination = (e) => {
         setDestination(e.target.value);
         setDestinationId(e.target.selectedIndex);
-    }
+    };
 
-    
     const handleBook = async (containerId, locationId, destinationId, availableFrom) => {
-        dispatch(addContainerToCart(containerId, locationId, destinationId, availableFrom))
+        dispatch(addContainerToCart(containerId, locationId, destinationId, availableFrom));
         navigate({
             pathname: '/login',
             search: `?${createSearchParams({
                 redirect: 'payment'
             })}`
-        })
+        });
     };
 
     return (
         <div className="container-availability">
-            <video autoPlay loop muted className="video-background">
-                <source src='/images/v4.mp4' type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
             <div className="overlay"></div>
-            <div className="form-container">
+            <div className="form-containery">
                 <h1>Check Container Availability</h1>
+                <label htmlFor="source-port">Enter Source Port Location:</label>
                 <select
                     value={location}
                     onChange={handlePortLocation}
                 >
-                    <option value="" disabled hidden>Select Port Location</option>
+                    <option value="" disabled hidden>Source Port </option>
                     {Ports.map((port, index) => (
-                        <option key={index+1} value={port}>
+                        <option key={index + 1} value={port}>
                             {port}
                         </option>
                     ))}
                 </select>
+                <label htmlFor="destination-port">Enter Destination Port:</label>
                 <select
                     value={destination}
                     onChange={handlePortDestination}
                 >
-                    <option value="" disabled hidden>Select Port Destination</option>
+                    <option value="" disabled hidden>Port Destination</option>
                     {Ports.map((port, index) => (
-                        <option key={index+1} value={port}>
+                        <option key={index + 1} value={port}>
                             {port}
                         </option>
                     ))}
                 </select>
+                <label htmlFor="available-from">Enter Date:</label>
                 <input
                     type="date"
                     value={availableFrom}
@@ -129,7 +140,7 @@ const ContainerAvailability = () => {
                                 <th>Size</th>
                                 <th>Location</th>
                                 <th>Available From</th>
-                                <th>Book</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -138,13 +149,13 @@ const ContainerAvailability = () => {
                                     <td>{container.id}</td>
                                     <td>{container.type}</td>
                                     <td>{container.size}</td>
-                                    <td>{Ports[container.id-1]}</td>
+                                    <td>{Ports[container.currentPortId - 1]}</td>
                                     <td>{container.availableFrom}</td>
                                     <td>
-                                        <button onClick={(e) => handleBook(container.id, locationId, destinationId, availableFrom)}>
-                                            Book
+                                        <button className='bookb' onClick={() => handleBook(container.id, locationId, destinationId, availableFrom)}>
+                                    Book 
                                         </button>
-                                    </td> {/* Add the Book button in each row */}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -156,22 +167,3 @@ const ContainerAvailability = () => {
 };
 
 export default ContainerAvailability;
-
-
-// const handleBook = async (containerId, locationId, destinationId, availableFrom) => {
-//     try {
-//         // Make a POST request to book the container
-//         await axios.post('https://localhost:7240/api/Booking/book', { 
-            
-//                 userId: 1,
-//                 containerId,
-//                 sourcePortId: locationId,
-//                 destinationPortId: destinationId,
-//                 shippingDate: availableFrom
-            
-//         });
-//         alert(`Container ${containerId} has been booked successfully!`);
-//     } catch (err) {
-//         alert(`Failed to book container ${containerId}. Please try again.`);
-//     }
-// };
