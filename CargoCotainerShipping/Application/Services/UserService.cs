@@ -21,19 +21,27 @@ namespace Application.Services
 
         public async Task<User> RegisterUser(string name, string email, string password, string phoneNo)
         {
-            var user = new User
+            var oldUser = await _userRepository.GetUserByEmail(email);
+            if (oldUser == null)
             {
-                Name = name,
-                Email = email,
-                Password = password,
-                Phone = phoneNo
-            };
+                var user = new User
+                {
+                    Name = name,
+                    Email = email,
+                    Password = password,
+                    Phone = phoneNo
+                };
 
-            user.HashPassword(); // Hash the password before saving
-            await _userRepository.CreateUser(user);
-            return user;
+                user.HashPassword(); // Hash the password before saving
+                await _userRepository.CreateUser(user);
+                return user;
+            }
+            else
+            {
+
+                throw new Exception("User is already exists, try with new Email");
+            }
         }
-
         public async Task<User> LoginUser(string email, string password)
         {
             var user = await _userRepository.GetUserByEmail(email);

@@ -22,7 +22,14 @@ namespace CargoCotainerShipping.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             var user = await _userService.RegisterUser(request.Name, request.Email, request.Password, request.PhoneNo);
-            return SendTokenResponse(user, 200);
+            if (user != null)
+            {
+                return SendTokenResponse(user, 200);
+            }
+            else
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPost("login")]
